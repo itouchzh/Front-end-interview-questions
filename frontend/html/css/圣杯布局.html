@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/global.css">
+    <title>Document</title>
+    <style>
+        /* 圣杯布局 */
+        header{
+            width: 100%;
+            background-color: chartreuse;
+        }
+        footer{
+            width: 100%;
+            background-color: dodgerblue;
+        }
+        .wrapper{
+            padding-left: 200px;
+            padding-right: 300px;
+            
+        }
+        .center{
+            width: 100%;
+            background-color: cyan;
+            
+        }
+        .left{
+            width: 200px;
+            background-color: burlywood;
+            /* margin 是按照父级元素来的 */
+            margin-left: -100%;
+            position: relative;
+            right: 200px;
+        }
+        .right{
+            width: 300px;
+            background-color:darkorange;
+            margin-right: -300px;
+        }
+        .item{
+            float: left;
+        }
+        /* footer{
+            clear: both;
+        } */
+        .wrapper:after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>header</header>
+    <div class="wrapper">
+        <!-- 让浏览器首先加载center区域 -->
+        <div class="item center">center</div>
+        <div class="item left">left</div>
+        <div class="item right">right</div>
+    </div>
+    <footer>footer</footer>
+</body>
+</html>

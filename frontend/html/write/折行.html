@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function wordWrap(str, maxWidth) {
+                let lines = str.trim().split(' '),
+                    words = [],
+                    lineLength = 0
+                lines.forEach((line) => {
+                    let wordLength = line.length
+                    if (lineLength + wordLength > maxWidth) {
+                        lineLength = wordLength
+                        words.push(line)
+                    } else {
+                        lineLength += wordLength + 1
+                        if (words.length) {
+                            words[words.length - 1] += ' ' + line
+                        } else {
+                            words.push(line)
+                        }
+                    }
+                })
+
+                console.log('words', words)
+                return words.join('\n')
+            }
+
+            let res = wordWrap('The', 15)
+            console.log(res)
+        </script>
+    </body>
+</html>

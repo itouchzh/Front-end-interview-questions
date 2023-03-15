@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>九天毕昇</title>
+    </head>
+    <body>
+        <input type="text" id="input">
+        <script>
+            let input = document.querySelector('#input')
+            input.click()
+            input.onclick = function(e){
+                console.log(e)
+            }
+
+            let ev = document.createEvent('HTMLEvents'); 
+            ev.clientX = 625
+            ev.clientY = 356
+            ev.initEvent('click', false, true); 
+            $('div[class="ant-select-selection__placeholder"]').dispatchEvent(ev)
+
+
+            // 按F12,粘贴后回车
+            function getV100(id = 0, time = 2000) {
+                let items = document.getElementsByClassName('operation-text')[id]
+                if (items.innerHTML === '运行') {
+                    setInterval(() => {
+                        items.click()
+                    }, time)
+                }
+            }
+            getV100(0,1000)
+            getV100(3,1000)
+            // 在没有V100的情况下进行选择
+            function getV100FromInstance(){
+                let setName = $('input[placeholder="请输入"]')
+                setName.value = 'Tomi'
+                // let selectV100 = $('div[class="ant-select-selection__placeholder"]')
+                let selectV100 = $('div[role="combobox"]').onclick = function(e){
+                    console.log(e)
+                }
+                selectV100.click()
+
+                let inv = '<div id = "add">点我</>'
+                selectV100.innerHTML = inv
+            }
+        </script>
+    </body>
+</html>

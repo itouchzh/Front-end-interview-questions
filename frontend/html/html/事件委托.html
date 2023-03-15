@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/global.css">
+</head>
+<body>
+    <div class="parent">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <button> 点我添加一个li </button>
+    </div>
+    <script>
+        // 事件委托，将孩子的事件委托到父节点上
+        let ul = document.querySelector('ul')
+        ul.onclick = function(event){
+            console.log(event,window.event)
+            event = event || window.event
+            let target = event.target
+            if(target.nodeName == 'LI'){
+                // 委托的事件
+                // alert(target.innerHTML)
+            }
+        }
+
+        let btn = document.querySelector('button')
+        btn.onclick = function(){
+            let li = document.createElement('li')
+            li.textContent = ul.children.length + 1
+            ul.appendChild(li)
+        }
+    </script>
+</body>
+</html>

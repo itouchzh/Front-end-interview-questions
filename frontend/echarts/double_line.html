@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.1/echarts.common.js"></script>
+    <style>
+      .main {
+        height: 500px;
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main"></div>
+    <script>
+      const myEchart = echarts.init(document.querySelector(".main"))
+      let option = {
+        tooltip: {
+          trigger: "axis",
+        },
+        legend: {
+          data: ["沪铝", "长江"],
+        },
+
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
+          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        },
+        yAxis: [
+          {
+            type: "value",
+           
+            // axisLabel: {
+            //   show: true,
+            //   showMinLabel: true,
+            //   showMaxLabel: true,
+            //   formatter: function (value) {
+            //     return "￥" + value / 1000 + "k";
+            //   },
+            // },
+          },
+          {
+            type: "value",
+            // min: function (value) {
+            //   return 1000;
+            // },
+            // axisLabel: {
+            //   show: true,
+            //   showMinLabel: true,
+            //   showMaxLabel: true,
+            //   formatter: function (value) {
+            //     return "$" + value / 1000 + "k";
+            //   },
+            // },
+          },
+        ],
+        series: [
+          {
+            name: "沪铝",
+            type: "line",
+            yAxisIndex: 0,
+            data: [1500, 3300, 2540, 2180, 11500, 3470, 2690],
+          },
+          {
+            name: "长江",
+            type: "line",
+            yAxisIndex: 1,
+            data: [1, 2, 30, 8, 5, 1, 0],
+          },
+        ],
+      };
+      myEchart.setOption(option)
+    </script>
+  </body>
+</html>

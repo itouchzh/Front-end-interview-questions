@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // new 的过程干了什么
+        // 1. 创建一个空对象
+        // 2. 空对象的原型指向构造函数的原型
+        // 3. 修改this指向
+        // 4. 返回值问题
+        function Fun(age, name){
+            this.age = age;
+            this.name = name
+        }
+
+        function create(fn, ...args){
+            // 创建一个空对象
+            let obj = {}
+            // 2. 将空对象的原型指向构造函数的原型
+            Object.setPrototypeOf(obj, fn.prototype)
+            // 3. 改变this指向
+            let res = fn.apply(obj, args)
+            // 4. 对构造函数有返回值的处理
+            return res instanceof Object ? res : obj
+        }
+    </script>
+</body>
+</html>
