@@ -2,7 +2,7 @@
 
 ## 常用指令
 
-``` git
+```git
 设置远程仓库位置
 git remote rm origin
 git remote add origin [url]
@@ -23,7 +23,7 @@ git branch -m [oldname] [newname] 修改分支名
 git checkout [name] 切换分支
 git merge [name] 合并分支
 
-git commit -am ""  直接提交是git add 和git commit的合集
+git commit -am ""  直接提交git add 和git commit的合集,只能提交被跟踪的文件，如果是新建立的文件就不行了
 git remote show origin 显示远程库origin里面的资源
 git checkout --track origin/dev 切换到远程仓库的dev分支
 git checkout -b dev 新建一个本地的dev分支
@@ -39,13 +39,14 @@ git reset --hard [版本号] 切换版本信息
 ```
 
 ## 问题
+
 1. 解决合并冲突问题
-当两个分支同时进行文件修改，git无法进行判断。
+   当两个分支同时进行文件修改，git无法进行判断。
+
 ```
 在主分支上再次进行修改，保留需要的内容后进行提交
 ```
 
 2. 团队协作
-![1678849411854](image/gitLearn/1678849411854.png)
-![1678849459265](image/gitLearn/1678849459265.png)
-
+   ![1678849411854](image/gitLearn/1678849411854.png)
+   ![1678849459265](image/gitLearn/1678849459265.png)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Document</title>
+        <script
+            src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+            integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+            crossorigin="anonymous"
+        ></script>
+    </head>
+    <body>
+        <h1>WebSocket</h1>
+        <input type="text" id="text" />
+        <button onclick="send()">发送信息</button>
+
+        <script>
+            const socket = io('http://localhost:3000/')
+            function send() {
+                let text = document.getElementById('text').value
+                socket.emit('sendMsg', text)
+            }
+
+            socket.on('sendAllMsg', (msg) => {
+                console.log(msg)
+            })
+        </script>
+    </body>
+</html>

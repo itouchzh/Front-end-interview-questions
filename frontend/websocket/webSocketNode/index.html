@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>WebSocket</h1>
+        <input type="text" id="text" />
+        <button onclick="send()">发送信息</button>
+
+        <script>
+            const client = new WebSocket('ws://localhost:8080/')
+            console.log(client.readyState)
+            client.onopen = () => {
+                console.log(client.readyState)
+            }
+            function send() {
+                let text = document.getElementById('text').value
+                console.log(text)
+                client.send(text)
+            }
+            client.onmessage = function (message) {
+                console.log(message.data)
+                if (message.type === 'utf8') {
+                    console.log("Received: '" + message.utf8Data + "'")
+                }
+            }
+        </script>
+    </body>
+</html>

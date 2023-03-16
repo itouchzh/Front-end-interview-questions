@@ -1,2 +1,4 @@
 fronted/**/node_modules
 frontend/react/learn/react-basic/node_modules
+frontend/websocket/websocketIo/node_modules
+frontend/websocket/webSocketNode/node_modules
