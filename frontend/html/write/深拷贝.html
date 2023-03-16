@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function deepClone(obj){
+            if(typeof obj !== 'object' || obj === null){
+                return obj
+            }
+            const newObj = Array.isArray(obj) ? [] : {}
+            for(let key in obj){
+                newObj[key] = deepClone(obj[key])
+            }
+            return newObj
+        }
+
+
+        function deepClone(obj){
+            if(typeof obj !== 'object' || obj === null){
+                return obj
+            }
+            let newOjb = Array.isArray(obj) ? [] : {}
+            for(let key in obj){
+                if(typeof obj[key] === 'object'){
+                    newOjb[key] = deepClone(obj[key])
+                }else{
+                    newOjb[key] = obj[key]
+                }
+            }
+            return newOjb
+        }
+
+        // function deepClone1(obj){
+        //     return JSON.parse(JSON.stringify(obj))
+        // }
+        // function deepClone2(obj){
+        //     const newOjb = Object.assign({}, obj)
+        //     // console.log(Object.keys())
+        //     // console.log(Object.keys(newOjb))
+        //     Object.keys(newOjb).forEach(key => {
+        //         if(typeof obj[key] === 'object'){
+        //             newOjb[key] = deepClone2(obj[key])
+        //         }
+        //     })
+        //     return newOjb
+        // }
+
+
+        // const obj = {
+        //     name: 'paul',
+        //     age: 23,
+        //     time:{
+        //         hour: '1',
+        //         miniute:{
+        //             class:'二年一班'
+        //         }
+        //     }
+        // }
+        let newOjb = deepClone2(obj)
+        // console.log(newOjb)
+        newOjb.time.hour = '2'
+        console.log(newOjb, obj)
+    </script>
+</body>
+</html>

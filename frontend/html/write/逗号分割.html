@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 以逗号分割数字，12345=12，345
+            function splitComma(num) {
+                num = num.toString().split('')
+                console.log(num)
+                let cur = 0
+                for (let i = num.length - 1; i > 0; i--) {
+                    if (++cur % 3 === 0) {
+                        num[i] = ',' + num[i]
+                    }
+                }
+                console.log(num)
+                return num.join('')
+            }
+            let res = splitComma(67)
+            console.log(res)
+        </script>
+    </body>
+</html>
