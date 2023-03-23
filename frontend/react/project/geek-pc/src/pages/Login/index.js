@@ -1,11 +1,26 @@
-import { Card, Form, Input, Button, Checkbox } from 'antd'
+import { Card, Form, Input, Button, Checkbox, message } from 'antd'
 import logo from '../../assets/logo.png'
 import './index.scss'
+import { useStore } from '../../store'
+import { useNavigate } from 'react-router-dom'
 
 function Login() {
+    // 获得跳转的实例对象
+    const navigate = useNavigate()
+    const store = useStore()
+    console.log(useStore())
     // 点击登录，触发该函数
-    const onFinish = (values) => {
-        console.log(values)
+    const onFinish = async (values) => {
+        try {
+            await store.loginStore.getToken({
+                mobile: values.mobile,
+                code: values.code,
+            })
+            // 跳转
+            navigate('/')
+        } catch (error) {
+            message.error(error.response?.data?.message || '登录失败')
+        }
     }
     return (
         <div className="login">
@@ -15,8 +30,8 @@ function Login() {
                     validateTrigger={['onBlur', 'onChange']}
                     onFinish={onFinish}
                     initialValues={{
-                        mobile: '15142365895',
-                        code: '123456',
+                        mobile: '13911111111',
+                        code: '246810',
                         remember: true,
                     }}
                 >
