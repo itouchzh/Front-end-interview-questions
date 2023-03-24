@@ -28,7 +28,7 @@ const { RangePicker } = DatePicker
 
 function Artical() {
     const { channelsStore } = useStore()
-    console.log(channelsStore.channelsList)
+    // console.log(channelsStore.channelsList)
     // 获取频道列表
     // const [channels, setChannels] = useState([])
     // useEffect(() => {
@@ -41,7 +41,7 @@ function Artical() {
     // }, [])
     // 删除文章回调
     const delArticle = async (data) => {
-        console.log(data)
+        // console.log(data)
         await http.delete(`/mp/articles/${data.id}`)
         setParams({
             page: 1,
@@ -151,7 +151,7 @@ function Artical() {
             const res = await http.get('/mp/articles', {
                 params,
             })
-            console.log(res)
+            // console.log(res)
             const { results, total_count } = res.data
 
             setArticleList({
@@ -183,7 +183,7 @@ function Artical() {
 
     // 分页
     const pageChange = (page) => {
-        console.log(page)
+        // console.log(page)
         setParams({
             ...params,
             page,
