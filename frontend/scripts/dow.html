@@ -36,7 +36,6 @@
             // 在没有V100的情况下进行选择
             function getV100FromInstance(name, delay) {
                 let setName = $('input[placeholder="请输入"]')
-                setName.value = name
                 const sourceButton = document.evaluate(
                     "//*[@id='container']/div/section/div/div[2]/div[3]/div[2]/div[1]/div/div",
                     document,
@@ -46,11 +45,15 @@
                 ).singleNodeValue
                 // 模拟点击
                 const clickButton = () => {
+                    if (setName.value === '') {
+                        setName.value = name
+                    }
                     sourceButton.click()
                     const selectButton = document.querySelector('ul[role]>li:nth-child(3)')
                     if (selectButton.hasAttribute('aria-disabled')) {
                         console.log('无卡')
                         sourceButton.click()
+                        document.getElementsByTagName('h2')[0].click()
                     } else {
                         selectButton.click()
                         const button = document.querySelector('button.ant-btn-primary')
@@ -65,7 +68,7 @@
                     clickButton()
                 }, delay)
             }
-            getV100FromInstance('V100-1', 1000)
+            getV100FromInstance('V100-1', 2000)
         </script>
     </body>
 </html>
