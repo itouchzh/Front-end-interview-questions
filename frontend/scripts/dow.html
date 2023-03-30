@@ -7,20 +7,19 @@
         <title>九天毕昇</title>
     </head>
     <body>
-        <input type="text" id="input">
+        <input type="text" id="input" />
         <script>
             let input = document.querySelector('#input')
             input.click()
-            input.onclick = function(e){
+            input.onclick = function (e) {
                 console.log(e)
             }
 
-            let ev = document.createEvent('HTMLEvents'); 
+            let ev = document.createEvent('HTMLEvents')
             ev.clientX = 625
             ev.clientY = 356
-            ev.initEvent('click', false, true); 
+            ev.initEvent('click', false, true)
             $('div[class="ant-select-selection__placeholder"]').dispatchEvent(ev)
-
 
             // 按F12,粘贴后回车
             function getV100(id = 0, time = 2000) {
@@ -31,21 +30,42 @@
                     }, time)
                 }
             }
-            getV100(0,1000)
-            getV100(3,1000)
-            // 在没有V100的情况下进行选择
-            function getV100FromInstance(){
-                let setName = $('input[placeholder="请输入"]')
-                setName.value = 'Tomi'
-                // let selectV100 = $('div[class="ant-select-selection__placeholder"]')
-                let selectV100 = $('div[role="combobox"]').onclick = function(e){
-                    console.log(e)
-                }
-                selectV100.click()
+            getV100(0, 1000)
+            getV100(3, 1000)
 
-                let inv = '<div id = "add">点我</>'
-                selectV100.innerHTML = inv
+            // 在没有V100的情况下进行选择
+            function getV100FromInstance(name, delay) {
+                let setName = $('input[placeholder="请输入"]')
+                setName.value = name
+                const sourceButton = document.evaluate(
+                    "//*[@id='container']/div/section/div/div[2]/div[3]/div[2]/div[1]/div/div",
+                    document,
+                    null,
+                    XPathResult.FIRST_ORDERED_NODE_TYPE,
+                    null
+                ).singleNodeValue
+                // 模拟点击
+                const clickButton = () => {
+                    sourceButton.click()
+                    const selectButton = document.querySelector('ul[role]>li:nth-child(3)')
+                    if (selectButton.hasAttribute('aria-disabled')) {
+                        console.log('无卡')
+                        sourceButton.click()
+                    } else {
+                        selectButton.click()
+                        const button = document.querySelector('button.ant-btn-primary')
+                        if (!button.hasAttribute('disabled')) {
+                            button.click()
+                        } else {
+                            console.log('按钮不可用')
+                        }
+                    }
+                }
+                setInterval(() => {
+                    clickButton()
+                }, delay)
             }
+            getV100FromInstance('V100-1', 1000)
         </script>
     </body>
 </html>
