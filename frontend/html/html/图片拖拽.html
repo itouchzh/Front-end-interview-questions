@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+            }
+            .originImg {
+                height: 300px;
+                width: 300px;
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 实现图片拖拽效果 -->
+        <div class="originImg">
+            <img src="../images/cat2.png" alt="小猫咪" onerror="imgError()" draggable="true" />
+        </div>
+        <div class="originImg"></div>
+        <script>
+            const imgError = () => {
+                console.log('error')
+            }
+            const boxes = document.querySelectorAll('.originImg'),
+                image = document.querySelector('img')
+            boxes.forEach((box) => {
+                box.addEventListener('dragover', (e) => {
+                    e.preventDefault()
+                })
+                box.addEventListener('drop', () => {
+                    box.appendChild(image)
+                })
+            })
+        </script>
+    </body>
+</html>
