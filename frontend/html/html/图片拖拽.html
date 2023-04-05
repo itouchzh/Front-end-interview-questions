@@ -25,12 +25,14 @@
     <body>
         <!-- 实现图片拖拽效果 -->
         <div class="originImg">
-            <img src="../images/cat2.png" alt="小猫咪" onerror="imgError()" draggable="true" />
+            <img src="../images/cat0.png" alt="小猫咪" onerror="imgError()" draggable="true" />
         </div>
         <div class="originImg"></div>
         <script>
             const imgError = () => {
                 console.log('error')
+                const errImg = document.querySelector('img')
+                errImg.src = '../images/404.png'
             }
             const boxes = document.querySelectorAll('.originImg'),
                 image = document.querySelector('img')
