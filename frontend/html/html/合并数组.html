@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 合并两个有序数组
+            function merge(A, m, B, n) {
+                // write code here
+                for (let i = 0, j = 0; j < n; i++) {
+                    console.log(i);
+                    if (A[i] > B[j] || i - j >= m) {
+                        A.splice(i, 0, B[j++])
+                    }
+                }
+            }
+            const A = [1, 2, 3, 4]
+            const B = [5, 6, 7]
+            merge(A, A.length, B, B.length)
+        </script>
+    </body>
+</html>

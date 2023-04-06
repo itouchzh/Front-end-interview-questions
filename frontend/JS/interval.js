@@ -40,16 +40,15 @@
 //     }
 // }
 // 节流
-// function throttle(fn, delay) {
-//     let flag = true
-//     return function () {
-//         if (flag) {
-//             setTimeout(() => {
-//                 fn.call(this)
-//                 flag = true
+// const throttle = function (fn, delay) {
+//     let timer = null
+//     return function (...args) {
+//         if (!timer) {
+//             timer = setTimeout(() => {
+//                 fn.apply(this, args)
+//                 timer = null
 //             }, delay)
 //         }
-//         flag = false
 //     }
 // }
 // 防抖：一个input输入框，每次输入都会出发绑定的事件，防抖就是隔一段时间后再进行触发，减少请求的次数
@@ -67,18 +66,7 @@
 // }
 // 节流：滚动时候需要触发绑定事件，减少触发次数
 // 规定一个单位时间，在这个单位时间内，只能有一次触发事件的回调函数执行，如果在同一个单位时间内某事件被触发多次，只有一次能生效。
-// function throttle(fn, delay) {
-//     let timer = true
-//     return function () {
-//         if (timer) {
-//             timer = setTimeout(() => {
-//                 fn.call(this)
-//                 timer = true
-//             }, delay)
-//         }
-//         timer = false
-//     }
-// }
+
 
 //-----------------------------
 /** 使用js写一个单词折行算法 */

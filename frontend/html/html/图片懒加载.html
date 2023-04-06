@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>图片懒加载</title>
+        <style>
+            .box {
+                height: 500px;
+                width: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>图片懒加载</h1>
+            <div class="box">
+                <img src="../images/cat2.png" alt="" />
+                <img src="../images/cat2.png" alt="" />
+                <img src="../images/cat2.png" alt="" />
+                <img src="../images/cat2.png" alt="" />
+                <img data-src="../images/cat2.png" alt="" />
+                <img data-src="../images/cat2.png" alt="" />
+                <img data-src="../images/cat2.png" alt="" />
+                <img data-src="../images/cat2.png" alt="" />
+                <img data-src="../images/cat2.png" alt="" />
+            </div>
+        </div>
+        <script>
+            const box = document.querySelector('.box')
+            const imgs = document.querySelectorAll('img')
+            // 节流
+            const throttle = function (fn, delay) {
+                let timer = null
+                return function (...args) {
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            fn.apply(this, args)
+                            timer = null
+                        }, delay)
+                    }
+                }
+            }
+            const lazy = function () {
+                console.log(box.getBoundingClientRect(), box.clientHeight)
+                imgs.forEach((item) => {
+                    if (box.getBoundingClientRect().top < box.clientHeight + 100) {
+                        if('src' in item.dataset){
+                            item.src = item.dataset.src
+                        }
+                    }
+                })
+            }
+            window.addEventListener('scroll', throttle(lazy, 500))
+        </script>
+    </body>
+</html>

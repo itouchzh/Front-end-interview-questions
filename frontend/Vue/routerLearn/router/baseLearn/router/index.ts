@@ -2,7 +2,21 @@ import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } 
 
 // 路由数组类型为RouteRecordRaw
 const routes: Array<RouteRecordRaw> = [
-   
+    {
+        path: '/virturalList',
+        // 命名路由
+        name: 'VirturalList',
+        component: () => import('../components/VirtualList/VirturalList.vue'),
+    },
+    {
+        path: '/home',
+        name: 'Home',
+        component: () => import('../components/Home/Home.vue'),
+    },
+    {
+        path: '/blockrender',
+        component:() => import('../components/VirtualList/BlockRender.vue')
+    }
 ]
 
 const router = createRouter({
