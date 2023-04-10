@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grid 布局</title>
+        <style>
+            /* #app {
+                height: 1000px;
+                width: 1000px;
+            } */
+            .warpper {
+                display: grid;
+                /* 主轴 */
+                grid-template-columns: repeat(4, 1fr);
+                /* 交叉轴 */
+                grid-template-rows: 100px 100px;
+                /* 交叉轴空隙 */
+                row-gap: 20px;
+                /* 主轴空隙 */
+                column-gap: 50px;
+                /* gap: row-gap 和 column-gap 的简写 */
+                gap: 20px 50px;
+
+                /* 排布顺序，默认从上到下，从左到右 */
+                /* column: 先从上到下，再从左到右 */
+                grid-auto-flow: column;
+            }
+            .box {
+                background-color: paleturquoise;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="warpper">
+                <div class="box">One</div>
+                <div class="box">Two</div>
+                <div class="box">three</div>
+                <div class="box">Four</div>
+                <div class="box">Five</div>
+                <div class="box">Six</div>
+                <div class="box">Seven</div>
+            </div>
+        </div>
+    </body>
+</html>

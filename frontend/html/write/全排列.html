@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 回溯法解决全排列
+            const _permute = (string) => {
+                const res = []
+                const path = []
+                const used = new Array(string.length).fill(false)
+                const backtracking = (str, used) => {
+                    if (path.length === str.length) {
+                        res.push(path.join(''))
+                        return
+                    }
+                    for (let i = 0; i < str.length; i++) {
+                        if (used[i]) continue
+                        used[i] = true
+                        path.push(str[i])
+                        backtracking(str, used)
+                        path.pop()
+                        used[i] = false
+                    }
+                }
+                backtracking(string, used)
+                return res
+            }
+            const result = _permute('abc')
+            console.log(result)
+        </script>
+    </body>
+</html>
