@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>css动画</title>
+        <style>
+            .process {
+                /* height: 10px; */
+                background-color: pink;
+                /* width: 5px; */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="process" style="width: 10px">0%</div>
+        <script>
+            // 使用requestAnimationFrame实现进度条效果
+            const process = document.querySelector('.process')
+            process.onclick = () => {
+                let timer = requestAnimationFrame(function fn() {
+                    console.log(parseInt(process.style.width))
+                    if (parseInt(process.style.width) < 500) {
+                        process.style.width = parseInt(process.style.width) + 5 + 'px'
+                        process.innerHTML = parseInt(process.style.width) / 5 + '%'
+                        timer = requestAnimationFrame(fn)
+                    } else {
+                        cancelAnimationFrame(timer)
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>小满模拟面试1</title>
+        <title>防抖和节流</title>
     </head>
     <body>
         <script>
@@ -12,25 +12,26 @@
             // 防抖： 减少执行次数，一段时间后没有操作就会执行
             function debounce(fn, delay) {
                 let timer = null
-                return function () {
-                    clearTimeout(timer)
+                return function (...args) {
+                    if (timer) {
+                        clearTimeout(timer)
+                    }
                     timer = setTimeout(() => {
-                        fn.apply(this, arguments)
+                        fn.apply(this, args)
                     }, delay)
                 }
             }
 
             // 节流
-            function thrount(fn, delay) {
-                let flag = true
-                return function () {
-                    if (flag) {
-                        setTimeout(() => {
-                            fn.apply(this, arguments)
-                            flag = true
+            function throuth(fn, delay) {
+                let timer = null
+                return function (...args) {
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            fn.apply(this, args)
+                            timer = null
                         }, delay)
                     }
-                    flag = false
                 }
             }
         </script>
