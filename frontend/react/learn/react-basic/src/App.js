@@ -1,20 +1,14 @@
-// redux
-import { useSelector, useDispatch } from 'react-redux'
-import {add} from './store2/modules/counterStore'
+import Student from './pages/Stu'
+import testContext from './store/testContext'
+import TestuseMemo from './pages/TestuseMemo'
 function App() {
-    const { count } = useSelector((state) => state.counterStore)
-    // 修改数据
-    const dispatch = useDispatch()
-    const clickHandler = () => {
-        const action = add()
-        dispatch(action)
-    }
     return (
-        <div className="App">
-            <div>test github</div>
-            {count}
-            <button onClick={clickHandler}>+</button>
-        </div>
+        <testContext.Provider value={{ name: 'paul', age: 28 }}>
+            <div className="App">
+                <Student></Student>
+                <TestuseMemo/>
+            </div>
+        </testContext.Provider>
     )
 }
 
