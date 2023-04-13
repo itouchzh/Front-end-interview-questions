@@ -1,12 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 防抖
+            function debounce(fn, delay) {
+                let timer = null
+                return function (...args) {
+                    if (timer) clearTimeout(timer)
+                    timer = setTimeout(() => {
+                        fn.apply(this, args)
+                    }, delay)
+                }
+            }
+            // 节流
+            function throuttle(fn, delay) {
+                let timer = null
+                return function (...args) {
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            fn.apply(this, args)
+                            timer = null
+                        }, delay)
+                    }
+                }
+            }
+            // Promise.all
+            function myPromiseAll(iterable) {
+                return new Promise((resolve, reject) => {
+                    const promises = Array.from(iterable)
+                    const results = []
+                    let count = 0
+                    for (let i = 0; i < promises.length; i++) {
+                        Promise.resolve(promises[i])
+                            .then((res) => {
+                                results[i] = res
+                                if (++count === promises.length) {
+                                    resolve(results)
+                                }
+                            })
+                            .catch((err) => reject(err))
+                    }
+                })
+            }
+            // Promise.race
+            function myPromiseRace(iterable) {
+                const promises = Array.from(iterable) // 将可迭代对象转换为数组
+                return new Promise((resolve, reject) => {
+                    for (let i = 0; i < promises.length; i++) {
+                        Promise.resolve(promises[i])
+                            .then((value) => {
+                                // 将每个 Promise 包装成 Promise 实例
+                                resolve(value) // 如果有任意一个 Promise 被解决了，则直接调用 resolve 并返回它的值
+                            })
+                            .catch((reason) => reject(reason)) // 如果有任意一个 Promise 失败，则直接调用 reject 函数并返回失败原因
+                    }
+                })
+            }
+            // Promise.any
+            function myPromiseAny(iterable) {
+                return new Promise((resolve, reject) => {
+                    const reasons = []
+                    let count = 0
+                    const promises = Array.from(iterable)
+                    for (let i = 0; i < promises; i++) {
+                        Promise.resolve(promises[i])
+                            .then((value) => resolve(value))
+                            .catch((err) => {
+                                reasons.push(reason)
+                                if (++count === promises.length) {
+                                    reject(new AggregateError(reasons))
+                                }
+                            })
+                    }
+                })
+            }
+            // 深拷贝
+            function deepCopy(obj) {
+                if (typeof obj !== 'object' || typeof obj === null) {
+                    return obj
+                }
+                const newObj = Array.isArray(obj) ? [] : {}
+                for (let key in newObj) {
+                    if (typeof obj[key] === 'object') {
+                        newObj[key] = deepCopy(obj[key])
+                    } else {
+                        newObj[key] = obj[key]
+                    }
+                }
+                return newObj
+            }
+            // map
+            function myMap(fn) {
+                const res = []
+                for (let i = 0; i < this.length; i++) {
+                    res.append(fn(this[i]))
+                }
+                return res
+            }
+            // filter
+            function myFilter(fn) {
+                const res = []
+                for (let i = 0; i < this.length; i++) {
+                    if (fn(this[i])) {
+                        res.append(this[i])
+                    }
+                }
+                return res
+            }
+            // new
+            function myNew(Fn, ...args) {
+                const obj = Object.create(Fn.prototype)
+                let res = Fn.apply(obj, args)
+                return typeof res == 'object' ? res : obj
+            }
+            // reduce
+
+            // 数组扁平化
+            function myFlat(arr) {
+                const res = []
+                for (let i = 0; i < arr.length; i++) {
+                    if (Array.isArray(arr[i])) {
+                        res.push(...myFlat(arr[i]))
+                    } else {
+                        res.push(arr[i])
+                    }
+                }
+                return res
+            }
+            // 发布订阅模式
+            class MyPublish {
+                constructor() {
+                    this.list = {}
+                }
+                on(name, cb) {
+                    let eventName = this.list[name] || []
+                    eventName.push(cb)
+                    this.list[name] = eventName
+                }
+                emit(name) {
+                    let eventNameList = this.list[name]
+                    eventNameList.forEach((fn) => fn())
+                }
+            }
+            // call 不明白
+            function myCall(context, ...args) {
+                context = context || window
+                context.fn = this
+                const res = context.fn(...args)
+                delete context.fn
+                return res
+            }
+            // bind 不明白
+            function myBind(context, ...args) {
+                if (typeof this !== 'function') {
+                    throw '请使用函数调用'
+                }
+                context = context || window
+                return (...args2) => {
+                    return this.call(context, ...args, ...args2)
+                }
+            }
+            // Object.create
+            function myCreate(proto) {
+                let obj = new Object()
+                obj.__proto__ = proto
+                return obj
+            }
+        </script>
+    </body>
 </html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 执行上下文与作用域 -->
+        <script>
+            // 词法作用域：词法作用域又叫做静态作用域，js使用的作用域就是词法作用域，即在编译阶段确定作用域。
+            // 词法作用域是在编译阶段就产生的
+            // 执行上下文就是当前 JavaScript 代码被解析和执行时所在的环境，也叫作执行环境。
+            // 作用域分类： 全局作用域、函数作用域、块级作用域
+            // let、const会拥有块级作用域，而var没有
+            // 1. 全局作用域
+            // 当没有声明或者，在非函数作用域中以var声明，都会有全局的作用域
+            var a = 123
+            if (a) {
+                var b = 456
+            }
+            console.log(a) // 123
+            console.log(b) //456
+
+            // 2. 函数作用域
+            function fn() {
+                var c = 7
+                console.log(c) // 7
+            }
+            fn()
+            console.log(c) // Uncaught ReferenceError: c is not defined
+
+            // 3. 块级作用域
+            // let const 具有块级作用域 级在{}中定义，就只在{}中生效，外部无法访问
+            if (a) {
+                let d = 4
+                console.log(d) // 4
+            }
+            console.log(d) //Uncaught ReferenceError: d is not defined
+
+            var a = 2
+            function foo() {
+                console.log(a) // 2
+            }
+            function bar() {
+                var a = 3
+                foo() // foo的作用域在创建时就确定了
+            }
+            bar()
+        </script>
+    </body>
+</html>
