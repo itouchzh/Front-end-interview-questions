@@ -11,43 +11,122 @@
         <script>
             // 词法作用域：词法作用域又叫做静态作用域，js使用的作用域就是词法作用域，即在编译阶段确定作用域。
             // 词法作用域是在编译阶段就产生的
+
+            // Js代码在运行时会创建执行上下文，其中包括全局执行上下文和函数执行上下文，
             // 执行上下文就是当前 JavaScript 代码被解析和执行时所在的环境，也叫作执行环境。
-            // 作用域分类： 全局作用域、函数作用域、块级作用域
+            // 执行上下文包含三部分、Variable Object(VO),Scope China 作用域链和this
+            // 作用域：函数或变量的可见区域
+            // 分类： 全局作用域、函数作用域、块级作用域
             // let、const会拥有块级作用域，而var没有
             // 1. 全局作用域
             // 当没有声明或者，在非函数作用域中以var声明，都会有全局的作用域
-            var a = 123
-            if (a) {
-                var b = 456
-            }
-            console.log(a) // 123
-            console.log(b) //456
+            // var a = 123
+            // if (a) {
+            //     var b = 456
+            // }
+            // console.log(a) // 123
+            // console.log(b) //456
 
             // 2. 函数作用域
-            function fn() {
-                var c = 7
-                console.log(c) // 7
-            }
-            fn()
-            console.log(c) // Uncaught ReferenceError: c is not defined
+            // function fn() {
+            //     var c = 7
+            //     console.log(c) // 7
+            // }
+            // fn()
+            // console.log(c) // Uncaught ReferenceError: c is not defined
 
-            // 3. 块级作用域
+            // // 3. 块级作用域
             // let const 具有块级作用域 级在{}中定义，就只在{}中生效，外部无法访问
-            if (a) {
-                let d = 4
-                console.log(d) // 4
-            }
-            console.log(d) //Uncaught ReferenceError: d is not defined
+            // if (a) {
+            //     let d = 4
+            //     console.log(d) // 4
+            // }
+            // console.log(d) //Uncaught ReferenceError: d is not defined
 
-            var a = 2
-            function foo() {
-                console.log(a) // 2
+            // var a = 2
+            // function foo() {
+            //     console.log(a) // 2
+            // }
+            // function bar() {
+            //     var a = 3
+            //     foo() // foo的作用域在创建时就确定了
+            // }
+            // bar()
+
+            // let x = 1
+            // function fn(x) {
+            //     return function (y) {
+            //         console.log(y + ++x)
+            //     }
+            // }
+            // let f = fn(2)
+            // f(3)
+            // fn(4)(5)
+            // f(6)
+            // console.log(x)
+
+            // var a = 20
+            // function fn1(){
+            //     console.log(a); // 20
+            // }
+            // function fn2(){
+            //     var a = 40
+            //     fn1()
+            // }
+            // fn2()
+
+            // 习题：
+            // function fn1() {
+            //     console.log(fn2) //ƒ fn2(){console.log("fn2")}
+            //     function fn2() {
+            //         console.log('fn2')
+            //     }
+            // }
+            // fn1()
+            // // 分析：
+            // VO = {
+            //     // 1. arguments 没有
+            //     // 2. 函数声明
+            //     fn2: function
+            //     // 3.变量声明：没有
+            // }
+
+            function test(a, b) {
+                console.log(a)
+                console.log(b)
+                var b = 234
+                console.log(b)
+                a = 123
+                console.log(a)
+                function a() {}
+                var a
+                b = 234
+                var b = function () {} // 函数表达式跳过
+                console.log(a)
+                console.log(b)
             }
-            function bar() {
-                var a = 3
-                foo() // foo的作用域在创建时就确定了
-            }
-            bar()
+            test(1)
+
+            // VO = {
+            //     arguments:
+            //         a: 1
+            //         b: undefined
+            //     function:
+            //         a: function(a已经变成function了)
+            //     Variable:
+            //         b会被直接跳过
+            //         a已经为function了，跳过
+            // }
+            // AO = {
+            //     arguments: 
+            //         a:function,
+            //         b:undefined
+            //     function:
+            //     Variable:
+            //         b:234 -> 234 -> function 
+            //         a:123
+            // }
+            // 结果： function a(){}, undefined, 234,123, 123, function (){}
         </script>
     </body>
 </html>

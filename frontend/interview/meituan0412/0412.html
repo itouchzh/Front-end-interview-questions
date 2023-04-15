@@ -7,112 +7,55 @@
         <title>Document</title>
     </head>
     <body>
+        <!-- 1. js -->
         <!-- 原型和原型链，作用域和作用域链 -->
         <!-- __proto__和prototype -->
-        <!-- webpack构建流程 -->
-        <!-- nextTick -->
-        <!-- 什么是流 -->
-        <!-- webpack提升打包速度 -->
-        <!-- webpack减小代码体积 -->
+        <!-- js作用域有哪些 -->
+
+        <!-- 2.ts -->
+        <!-- 泛型：泛型类、泛型函数、泛型接口 -->
         <!-- keyof 和typeof -->
         <!-- 动态类型和静态类型 -->
         <!-- 强类型和弱类型 -->
-        <!-- computed 和 watch -->
-        <!-- 如何实现权限管理 -->
-        <!-- vue响应式原理 -->
-        <!-- 变量提升 -->
-        <!-- node的事件循环机制，为什么要设计事件循环 -->
-        <!-- 用什么来捕获错误，用来什么来兜底 -->
-        <!-- babel原理 -->
-        <!-- treeshaking 的原理 -->
-        <!-- plugin和loader的区别 -->
-        <!-- const 和 readOnly 的区别 -->
-        <!-- 实现函数泛型、类泛型、接口泛型 -->
-        <!-- ts、js、java区别 -->
         <!-- void 和 unknown的区别， any和never的区别 -->
         <!-- ??和?. -->
         <!-- namespace 作用，与module的区别 -->
+        <!-- const 和 readOnly 的区别 -->
+        <!-- ts、js、java区别 -->
+        <!-- Exclude、Omit、Merge、Intersection、Overwrite -->
+
+        <!-- 3.node -->
+        <!-- node的事件循环机制，为什么要设计事件循环 -->
+        <!-- 用什么来捕获错误，用来什么来兜底 -->
         <!-- readFile 和 createWriteStream() -->
         <!-- node可以多核实现吗，怎么操作 -->
-        <!-- Exclude、Omit、Merge、Intersection、Overwrite -->
-        <!-- js作用域有哪些 -->
+        <!-- nextTick -->
+        <!-- 什么是流 -->
+
+        <!-- 4.webpack -->
+        <!-- webpack构建流程 -->
+        <!-- webpack提升打包速度 -->
+        <!-- webpack减小代码体积 -->
+        <!-- babel原理 -->
+        <!-- treeshaking 的原理 -->
+        <!-- plugin和loader的区别 -->
+
+        <!-- 5.vue -->
+        <!-- computed 和 watch -->
+        <!-- 如何实现权限管理 -->
+        <!-- vue响应式原理 -->
+
+        
+        
 
         <script>
-            // 原型和原型链
-            // 每个函数都有prototype，称之为原型，也叫原型对象。每个对象都有__proto__属性，这个属性指向他自己的原型对象
-            // 同时原型对象也是对象，所以也有__proto__属性，这样一层一层形成的链式结构称为原型链。
-            // console.log(Object);
-            // console.log(Object.__proto__); // ƒ () { [native code] }
-            // console.log(Object.__proto__.prototype); // nudefined
-            // console.log(Object.prototype.__proto__) // null
-            // console.log(Object.prototype) // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
 
-            // console.log(Function)
-            // console.log(Function.__proto__) // ƒ () { [native code] }
-            // console.log(Function.__proto__.prototype);//undefined
-            // console.log(Function.prototype.__proto__); // {constructor: ƒ, __defineGetter__: ƒ, __defineSetter__: ƒ, hasOwnProperty: ƒ, __lookupGetter__: ƒ, …}
-            // console.log(Function.prototype) // ƒ () { [native code] }
 
-            // console.log(Function.prototype.__proto__ === Object.prototype); // true
-            // console.log(Function.prototype === Function.__proto__); // true
 
-            // function Person(name){
-            //     this.name = name
-            // }
-            // const person = new Person('paul')
-            // console.log(person.__proto__ === Person.prototype);
-            // -------------------------------------------------------------
-            // 作用域和作用域链
-            // 作用域分为全局作用域、函数作用域、块级作用域、词法作用域，又叫静态作用域 和 动态作用域
-            // let、const会拥有块级作用域，而var没有
-            // 1. 全局作用域
-            // 当没有声明或者，在非函数作用域中以var声明，都会有全局的作用域
-            var a = 123
-            if (a) {
-                var b = 456
-            }
-            console.log(a) // 123
-            console.log(b) //456
-
-            // 2. 函数作用域
-            function fn() {
-                var c = 7
-                console.log(c) // 7
-            }
-            fn()
-            // console.log(c) // Uncaught ReferenceError: c is not defined
-
-            // 3. 块级作用域
-            // let const 具有块级作用域 级在{}中定义，就只在{}中生效，外部无法访问
-
-            if (a) {
-                let d = 4
-                console.log(d) // 4
-            }
-            // console.log(d) //Uncaught ReferenceError: d is not defined
-
-            // 4. 词法作用域  词法作用域，又叫静态作用域，变量被创建时就确定好了，而非执行阶段确定的。Javascript遵循词法作用域
-            var a = 2
-            function foo() {
-                console.log(a) // 2
-            }
-            function bar() {
-                var a = 3
-                foo()
-            }
-            bar()
-            
-            // let x = 1
-            // function A(y) {
-            //     let x = 2
-            //     console.log(x)
-            //     function B(z) {
-            //         console.log(x + y + z)
-            //     }
-            //     return B
-            // }
-            // let C = A(2)
-            // C(3)
+            let a = 23
+            console.log(a); // 23
+            a = 'hello'
+            console.log(a); //hello
         </script>
     </body>
 </html>
