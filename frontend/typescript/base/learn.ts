@@ -147,3 +147,40 @@ function AddOne1<T extends number>(a: T, b: T): number {
     return a + b
 }
 // keyof 将对象的key推为联合类型
+
+// 类型拓展与类型缩小
+
+// let t1 = null
+// let t2 = undefined
+// const t3 = null
+// const t4 = undefined
+
+// 交叉类型和联合类型
+// 接口类型一旦定义了任意属性那么'确定属性和可选属性的类型都必须是它的类型的子集'
+// interface Person1 {
+//     name: string
+//     age: number // 报错
+//     [propName: string]: string // 改正 [propName: string]: any; 或者 [propName: string]: string|number
+// }
+
+// 泛型
+// 函数声明
+let getArray: <T>(arg: T, times: number) => T[]
+declare function getArray1<T>(arg: T): T
+//
+//泛型和 interface
+interface KeyPair<T, U> {
+    key: T
+    value: U
+}
+
+// 泛型约束 extends
+interface KeyPair1<T extends string | number> {
+    name: T
+}
+
+// 枚举
+enum State {
+    Ready,
+    Waiting,
+}

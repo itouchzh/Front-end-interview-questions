@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .unhover,
+            .inhover {
+                height: 200px;
+                width: 200px;
+                border-radius: 10px;
+                border: 2px solid #e2f8ff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .inhover {
+                background-color: #c4f0fe;
+                flex-direction: column;
+                /* display: none; */
+            }
+            .title {
+                font-weight: 600;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            span {
+                /* display: inline-block; */
+                width: 150px;
+                /* height: 100px; */
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3; /* 最多显示两行内容 */
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="unhover">
+                <div class="inner">eCommerce & Retail</div>
+            </div>
+            <div class="inhover">
+                <div class="title">eCommerce & Retail</div>
+                <span
+                    >We help you embed the protection your customers need - like an extended
+                    123456</span
+                >
+            </div>
+        </div>
+        <script>
+            const origin = document.getElementsByClassName('unhover')[0]
+            const current = document.getElementsByClassName('inhover')[0]
+            // origin.addEventListener('mouseenter', function () {
+            //     origin.style.display = 'none'
+            //     current.style.display = 'flex '
+            // })
+
+            // current.addEventListener('mouseleave', function () {
+            //     current.style.display = 'none'
+            //     origin.style.display = 'flex'
+            // })
+            // function isSame(data) {
+            //     let data = JSON.parse(data)
+            //     let msgAddress = data.address[0]
+            //     let realAddress = data.address[1]
+            //     return (
+            //         msgAddress.addressType === realAddress.addressType &&
+            //         msgAddress.country === realAddress.country &&
+            //         msgAddress.province === realAddress.province &&
+            //         msgAddress.city === realAddress.city &&
+            //         msgAddress.postalCode === realAddress.postalCode
+            //     )
+            // }
+        </script>
+    </body>
+</html>
