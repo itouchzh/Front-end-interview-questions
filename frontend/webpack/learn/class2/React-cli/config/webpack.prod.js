@@ -94,6 +94,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.html'),
         }),
+        // 将css文件抽离成单独文件
         new MiniCssExtractPlugin({
             filename: 'static/css/[name].[contenthash:10].css',
             chunkFilename: 'static/css/[name].[contenthash:10].chunk.css',
