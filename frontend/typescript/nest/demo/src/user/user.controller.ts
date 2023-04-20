@@ -8,7 +8,7 @@ import {
   Delete,
   Request,
   Query,
-  Headers
+  Headers,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -31,7 +31,7 @@ export class UserController {
   // get的参数在query里面,headers读取请求头里面的信息
   @Get()
   findAll(@Query() body, @Headers() headers) {
-    console.log(body,headers);
+    console.log(body, headers);
     return {
       code: 200,
     };
