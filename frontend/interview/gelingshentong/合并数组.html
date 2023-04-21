@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>第一题</title>
+        <style>
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            #app {
+                height: 100%;
+
+                display: flex;
+            }
+            #left {
+                width: 200px;
+                height: 100%;
+                border-right: 2px solid;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #right {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .content {
+                height: 300px;
+                width: 300px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .imgBox {
+                display: flex;
+            }
+            img {
+                height: 150px;
+                width: 150px;
+                border: 2px pink solid;
+            }
+            .btn {
+                width: 100%;
+                display: flex;
+                justify-content: space-evenly;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div id="left">sidebar</div>
+            <div id="right">
+                <div class="content">
+                    <div class="imgBox"><img src="" alt="image" /></div>
+                    <div class="btn">
+                        <button>button1</button>
+                        <button>button2</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        // merge arr
+        function mergeSortedArr(arr1, arr2) {
+            let res = [...arr1, ...arr2]
+            return res.sort((a, b) => a - b)
+        }
+        function mergeSortedArr1(arr1, arr2) {
+            let m = arr1.length,
+                n = arr2.length
+            for (let i = 0, j = 0; j < n; i++) {
+                if (arr1[i] > arr2[j] || i - j >= m) {
+                    arr1.splice(i, 0, arr2[j++])
+                }
+            }
+            return arr1
+        }
+        console.log(mergeSortedArr1([1, 2, 3], [1, 2, 3]))
+    </script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            #main {
+                display: flex;
+                align-items: center;
+            }
+            span {
+                display: inline-block;
+                width: 100px;
+            }
+            .inner > div {
+                margin: 20px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div id="main">
+                <div>Contact address same as home address ?</div>
+                <div class="colum">
+                    <div><input type="radio" class="address" name="address" checked />Yes</div>
+                    <div><input type="radio" class="address" name="address" />No</div>
+                </div>
+            </div>
+            <div class="inner">
+                <div>Home Address</div>
+                <div><span>country</span> <input type="text" /></div>
+                <div><span>Province</span> <input type="text" placeholder="" /></div>
+                <div><span>City</span> <input type="text" placeholder="" /></div>
+                <div><span>Postalcode</span> <input type="text" placeholder="" /></div>
+            </div>
+            <div class="inner conInner">
+                <div>Contact Address</div>
+                <div><span>country</span> <input type="text" placeholder="" /></div>
+                <div><span>Province</span> <input type="text" placeholder="" /></div>
+                <div><span>City</span> <input type="text" placeholder="" /></div>
+                <div><span>Postalcode</span> <input type="text" placeholder="" /></div>
+            </div>
+        </div>
+        <script>
+            const radio = document.getElementsByClassName('address')
+            const conInner = document.getElementsByClassName('conInner')[0]
+            if (radio[0].checked) {
+                conInner.style.display = 'none'
+            }
+
+            radio[0].addEventListener('click', function () {
+                conInner.style.display = 'none'
+            })
+
+            radio[1].addEventListener('click', function () {
+                conInner.style.display = 'block'
+            })
+        </script>
+    </body>
+</html>
