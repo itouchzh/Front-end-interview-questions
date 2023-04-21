@@ -1,39 +1,18 @@
-import './App.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement } from './store/rtk/stuSlice'
-
-function Son({ children, size = 90 }) {
-    return (
-        <>
-            {children}---{size}
-        </>
-    )
-}
-
+import { Route, Routes, Link } from 'react-router-dom'
+import About from './components/About'
+import Home from './components/Home'
+import Student from './components/Student'
 function App() {
-    // 使用
-    const count = useSelector((state) => state.counter.value)
-    const dispatch = useDispatch()
     return (
         <div className="App">
-            <Son>
-                <h1>Hello World</h1>
-            </Son>
-            <button
-                onClick={() => {
-                    dispatch(increment(10))
-                }}
-            >
-                +
-            </button>
-            <span>{count}</span>
-            <button
-                onClick={() => {
-                    dispatch(decrement())
-                }}
-            >
-                -
-            </button>
+            <h1>App</h1>
+            <Link to="/">首页</Link>
+            <Link to="/about">关于</Link>
+            <Routes>
+                <Route path="/" element={<Home></Home>}></Route>
+                <Route path="about" element={<About></About>}></Route>
+                <Route path="student/:id" element={<Student></Student>}></Route>
+            </Routes>
         </div>
     )
 }
