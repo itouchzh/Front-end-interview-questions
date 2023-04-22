@@ -1,0 +1,32 @@
+$back: #fff;
+.login-main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: #51a0c9;
+}
+#normal_login {
+    position: absolute;
+    height: 410px;
+    width: 360px;
+    background-color: $back;
+    padding: 30px;
+    .login-form {
+        max-width: 300px;
+    }
+    .login-form-forgot {
+        float: right;
+    }
+    .ant-col-rtl .login-form-forgot {
+        float: left;
+    }
+    .login-form-button {
+        width: 100%;
+    }
+}
+#canvas {
+    position: relative;
+    z-index: -1;
+}
