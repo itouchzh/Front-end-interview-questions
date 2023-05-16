@@ -23,7 +23,7 @@ const routes = [
         element: suspense(<Login />),
     },
     {
-        path: 'home',
+        path: '/home',
         element: suspense(<Home />),
         children: [
             {
