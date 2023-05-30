@@ -2,9 +2,21 @@ const path = require('path')
 const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 // 处理html
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+/**@type {import('webpack'.Configuration)} */
 module.exports = {
     // 入口
-    entry: './src/main.js',
+    // entry: './src/main.js',
+    // entry配置为对象
+    entry: {
+        //  从input到output为一个chunk,一个chunk必定会输出一些文件，这些文件叫做bundles
+        main: {
+            filename: 'target.js', // 输出结果名称
+            import: './src/main.js', // 指定的入口文件
+            runtime: '', // 配置当前chunk的运行时环境,如果有的话就直接重用，没有就创建一个
+            // dependOn:'', // 与runtime相同，但是没有环境就会报错，不会自己构建， 与runtime不能同时存在
+        },
+    },
     // 出口
     output: {
         path: path.resolve(__dirname, 'dist'),
