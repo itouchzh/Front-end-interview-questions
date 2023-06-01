@@ -100,8 +100,24 @@ type Second = { b: number };
 // type AB = Intersection<A, B>; // { a: number, b: string }
 
 interface User {
-  id: number;
-  name: string;
+    id: number;
+    name: string;
 }
 // 覆盖其中包含的同名属性，并返回一个新类型。例如：
 // type UpdatedUser = Overwrite<User, { name: number }>; // { id: number, name: number }
+
+
+
+const configs = [
+    {
+        name: 'width',
+        value: '60px',
+    },
+    {
+        name: 'height',
+        value: '40px',
+    }
+] as const;
+
+type ConfigName = typeof configs[number]['name'] | typeof configs[number]['value']; //type ConfigName = "width" | "60px" | "height" | "40px"
+

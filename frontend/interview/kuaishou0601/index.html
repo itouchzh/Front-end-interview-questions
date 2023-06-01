@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 1. 分别输出什么
+            // function A() {}
+            // const a = new A()
+            // console.log(a.constructor) // function A(){} 实例对象的构造函数指向本身
+            // console.log(a.prototype) // a 没有prototype属性，undedined
+            // console.log(a.__proto__) // a.__proto__ = A.prototype = constructor
+            // console.log(A.prototype.constructor) // function A(){}
+
+            // const value = 21
+            // function getInfo() {
+            //     console.log(typeof value) // 报错，换成var就是undefined
+            //     const value = 'John'
+            // }
+            // getInfo()
+
+            // 输出结果1， 3， 4
+            // new Promise((res, rej) => {
+            //     res(1)
+            // })
+            //     .then((v) => {
+            //         console.log(v)
+            //         throw new Error('error')
+            //     })
+            //     .then(() => {
+            //         console.log(2)
+            //     })
+            //     .catch(() => {
+            //         console.log(3)
+            //     })
+            //     .then(() => {
+            //         console.log(4)
+            //     })
+
+            // 实现一个sleep方法
+            // function sleep(time) {
+            //     return new Promise((resolve) => setTimeout(resolve, time))
+            // }
+            // 实现字符串得trim方法
+            // const str = '  123  '
+            // const trimStr = str.split('').filter(item => item !== ' ').join('')
+            // console.log(trimStr);
+            // 一行代码实现 "a, b, c, d, e, f" 输出"g#f#e#d#c#b#a"
+            // const str = 'a,b,c,d,e,f'
+            // const newStr = str.split(',').reverse().join('#')
+            // console.log(newStr);
+            //获取两个数组中的重复元素。
+            // const arrA = [1, 2, 3, 4, 5]
+            // const arrB = [4, 5, 6, 7, 8]
+            // const newArr = arrA.filter(item => arrB.includes(item))
+            // console.log(newArr);
+            // 实现lodash的set方法
+            // const obj = {}
+            // set(obj, 'a.b.c', 100)
+            // console.log(obj) // {a:{b:{c:100}}}
+
+            // function _set(obj, key, value) {
+            //     const arrKey = key.split('.')
+            //     let newObj = obj
+            //     arrKey.forEach((item, index) => {
+            //         if (index !== arrKey.length - 1) {
+            //             if (!newObj[item]) {
+            //                 newObj[item] = {}
+            //             }
+            //         } else {
+            //             newObj[item] = value
+            //         }
+            //         newObj = newObj[item]
+            //     })
+            // }
+            // const obj = {}
+            // _set(obj, 'a.b.c', 100)
+            // _set(obj,'d',200)
+            // console.log(obj)
+
+            /*
+            //输入数字返回 xx天xx时xx分xx秒
+            //并且实现每秒更新一次
+            let countdown = 98225
+            function getTime() {
+
+            }
+
+            //testcase 输出
+            //1天3时17分5秒
+            //1天3时17分4秒
+            //1天3时17分3秒
+            //1天3时17分2秒
+            //1天3时17分1秒
+            //1天3时17分0秒
+            //1天3时16分59秒
+            */
+
+            // let countdown = 98225
+
+            // function getTime() {
+            //     // 计算剩余时间的天、小时、分钟和秒
+            //     const days = Math.floor(countdown / (24 * 60 * 60))
+            //     const hours = Math.floor((countdown % (24 * 60 * 60)) / (60 * 60))
+            //     const minutes = Math.floor((countdown % (60 * 60)) / 60)
+            //     const seconds = countdown % 60
+
+            //     // 格式化时间字符串
+            //     const timeString = `${days}天${hours}时${minutes}分${seconds}秒`
+
+            //     // 输出时间字符串
+            //     console.log(timeString)
+
+            //     // 每秒更新一次倒计时
+            //     countdown--
+
+            //     // 判断倒计时是否结束
+            //     if (countdown < 0) {
+            //         clearInterval(intervalId)
+            //         console.log('倒计时结束')
+            //     }
+            // }
+
+            // 每秒调用一次 getTime 函数
+            // const intervalId = setInterval(getTime, 1000)
+
+            //  数组扁平化
+            // function flatArr(arr){
+            //     let newArr = []
+            //     for(let i = 0;i < arr.length; i++){
+            //         if (Array.isArray(arr[i])){
+            //             newArr.push(...flatArr(arr[i]))
+            //         }else{
+            //             newArr.push(arr[i])
+            //         }
+            //     }
+            //     return newArr
+            // }
+            // const arr = [1, 2, [1, 2,[1, 2, [1, 2]]]]
+            // console.log(flatArr(arr));
+
+            //  数组去重
+            // const arr = [1, 2, 3, 4, 5, 5, 5]
+            // const newArr = [...new Set(arr)]
+            // console.log(newArr);
+            // const newArr2 = arr.filter((item, index, arr) => arr.indexOf(item) === index)
+            // console.log(newArr2);
+
+            //  快速排序
+            // const arr = [1, 2, 3, 6, 7, 9, 0, 121, 3, 344, 110]
+            // function quickSort(arr) {
+            //     if (arr.length <= 1) {
+            //         return arr // 基线条件：如果数组为空或只有一个元素，则直接返回
+            //     }
+            //     const pivot = arr[0] // 将第一个元素作为基准点
+            //     const left = []
+            //     const right = []
+            //     for (let i = 1; i < arr.length; i++) {
+            //         if (arr[i] < pivot) {
+            //             left.push(arr[i]) // 小于基准点的元素放入左边数组
+            //         } else {
+            //             right.push(arr[i]) // 大于等于基准点的元素放入右边数组
+            //         }
+            //     }
+
+            //     // 递归调用快速排序对左右两个数组进行排序
+            //     return quickSort(left).concat([pivot], quickSort(right))
+            // }
+            // const sortArr = quickSort(arr)
+            // console.log(sortArr)
+            // 反转字符串
+            // const str = 'abcdefg'
+            // console.log(str.split('').reverse().join(''));
+            //  全排列
+            // function permute(str) {
+            //     let arr = str.split('')
+            //     let used = new Array(arr.length).fill(false),
+            //         res = []
+            //     const backtracking = (used, path, arr) => {
+            //         if (path.length == str.length) {
+            //             res.push(path.join(''))
+            //             return
+            //         }
+            //         for (let i = 0; i < str.length; i++) {
+            //             if (used[i]) continue
+            //             used[i] = true
+            //             path.push(arr[i])
+            //             backtracking(used, path, arr)
+            //             used[i] = false
+            //             path.pop()
+            //         }
+            //     }
+            //     backtracking(used, [], arr)
+            //     return res
+            // }
+            // console.log(permute('abc'))
+
+            //  防抖
+            // function debounce(fn, delay) {
+            //     let timer = null
+            //     return function () {
+            //         if (timer) {
+            //             clearTimeout(timer)
+            //         }
+            //         timer = setTimeout(() => {
+            //             fn.call(this)
+            //         }, delay)
+            //     }
+            // }
+
+            // //  节流
+            // function throttle(fn, delay) {
+            //     let timer = null
+            //     return function () {
+            //         if (!timer) {
+            //             timer = setTimeout(() => {
+            //                 fn.call(this)
+            //                 timer = null
+            //             }, delay)
+            //         }
+            //     }
+            // }
+
+            // 合并两个有序数组
+            // const arr1 = [1, 2, 3]
+            // const arr2 = [4, 5, 6]
+            // function merge(arr1, arr2){
+            //     const m = arr1.length, n = arr2.length
+            //     for(let i = 0, j = 0; j < n; i++){
+            //         if(arr1[i] > arr2[j] || i - j >= m ){
+            //             arr1.splice(i, 0, arr2[j++])
+            //         }
+            //     }
+            //     return arr1
+            // }
+            // merge(arr1, arr2)
+            
+        </script>
+    </body>
+</html>
