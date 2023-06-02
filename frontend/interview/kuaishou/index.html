@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        
+        <script>
+
+            /*
+            1. http 请求状态码
+            2. http请求报文格式
+            3. cookie 能不能被发送到服务端
+            4.get请求，post请求
+            5. headers 里面有什么
+            6. 手写求和 和 数组对象转为树
+            7. css 垂直水平居中
+            8. css module
+            9. less 和 sass
+            10. context 
+            11. hooks 看法及原理
+            12. 
+            
+            
+            
+            */
+            function sum(from, to) {
+                if (from === to) {
+                    return from
+                }
+                return from + sum(from + 1, to)
+            }
+            console.log(sum(1, 100))
+        </script>
+    </body>
+</html>

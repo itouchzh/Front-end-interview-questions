@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const nodes = [
+                { id: 3, name: '节点C', parentId: 1 },
+                { id: 6, name: '节点F', parentId: 3 },
+                { id: 0, name: 'root', parentId: null },
+                { id: 1, name: '节点A', parentId: 0 },
+                { id: 8, name: '节点H', parentId: 4 },
+                { id: 4, name: '节点D', parentId: 1 },
+                { id: 2, name: '节点B', parentId: 0 },
+                { id: 5, name: '节点E', parentId: 2 },
+                { id: 7, name: '节点G', parentId: 2 },
+                { id: 9, name: '节点I', parentId: 5 },
+            ]
+
+            function constructTree(nodes) {
+                const idMap = {}
+                let root = null
+
+                nodes.forEach((node) => {
+                    const { id, name, parentId } = node
+                    idMap[id] = { id, name, parentId, children: [] }
+                })
+
+                nodes.forEach((node) => {
+                    const { id, parentId } = node
+                    const currentNode = idMap[id]
+                    if (parentId === null) {
+                        root = currentNode
+                    } else {
+                        const parentNode = idMap[parentId]
+                        if (parentNode) {
+                            parentNode.children.push(currentNode)
+                        }
+                    }
+                })
+
+                return root
+            }
+
+            const tree = constructTree(nodes)
+            console.log(tree)
+        </script>
+    </body>
+</html>

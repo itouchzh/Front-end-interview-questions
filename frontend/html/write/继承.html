@@ -23,33 +23,41 @@
             // let son = new Son()
             // console.table(son.name, son instanceof Son, son instanceof Parent, son.hasOwnProperty('name')) // paul true true true
 
-            function School() {
-                this.address = '陕西西安'
-            }
-            let school = new School()
-            console.log(school)
-            console.log(school.__proto__ === School.prototype) // true
+            // function School() {
+            //     this.address = '陕西西安'
+            // }
+            // let school = new School()
+            // console.log(school)
+            // console.log(school.__proto__ === School.prototype) // true
 
-            // 寄生组合式继承
-            function Parent(){
-                this.name = 'Parent'
+            // // 寄生组合式继承
+            // function Parent(){
+            //     this.name = 'Parent'
                 
-            }
-            Parent.prototype.sayName = function(){
-                console.log("This is sayName()")
-            }
-            function Son(){
-                Parent.call(this)
-                this.type = 'Son'
-            }
-            // 将Son的原型指向Parent
-            Son.prototype = Object.create(Parent.prototype)
-            // 确保Son的构造器指向本身
-            Son.prototype.constructor = Son
-            let son = new Son()
-            son.sayName()
-            console.log(son.name)
+            // }
+            // Parent.prototype.sayName = function(){
+            //     console.log("This is sayName()")
+            // }
+            // function Son(){
+            //     Parent.call(this)
+            //     this.type = 'Son'
+            // }
+            // // 将Son的原型指向Parent
+            // Son.prototype = Object.create(Parent.prototype)
+            // // 确保Son的构造器指向本身
+            // Son.prototype.constructor = Son
+            // let son = new Son()
+            // son.sayName()
+            // console.log(son.name)
+            
 
+            //  1. 原型链继承
+            //  2. 盗用构造函数继承
+            //  3. 组合继承
+            // 4. 原型式继承
+            // 5. 寄生式继承
+            // 6. 寄生组合式继承
+            
 
 
         </script>
