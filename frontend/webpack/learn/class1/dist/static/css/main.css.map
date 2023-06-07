@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.css","mappings":"AAAA","sources":["webpack://class1/./src/css/index.css"],"sourcesContent":[".box1 {\r\n    width: 100px;\r\n    height: 100px;\r\n    background-image: url('../assets/images/cat.png');\r\n    background-size: cover;\r\n}"],"names":[],"sourceRoot":""}

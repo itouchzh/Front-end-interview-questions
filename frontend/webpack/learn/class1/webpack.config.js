@@ -13,7 +13,7 @@ module.exports = {
         main: {
             filename: 'target.js', // 输出结果名称
             import: './src/main.js', // 指定的入口文件
-            runtime: '', // 配置当前chunk的运行时环境,如果有的话就直接重用，没有就创建一个
+            // runtime: '', // 配置当前chunk的运行时环境,如果有的话就直接重用，没有就创建一个
             // dependOn:'', // 与runtime相同，但是没有环境就会报错，不会自己构建， 与runtime不能同时存在
         },
     },
@@ -72,11 +72,15 @@ module.exports = {
                     filename: 'static/media/[hash:8][ext][query]',
                 },
             },
-
             {
                 test: /\.js$/,
                 exclude: /node_modules/, // 排除node_modules代码不编译
-                loader: 'babel-loader',
+                use: ['babel-loader', {
+                    loader: './loaders/banner-loader/index',
+                    options: {
+                        author:'hhh'
+                    }
+                }],
             },
         ],
     },
