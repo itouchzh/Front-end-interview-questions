@@ -2,6 +2,7 @@ const path = require('path')
 const ESLintWebpackPlugin = require('eslint-webpack-plugin')
 // 处理html
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const TestPlugin = require('./plugins/test-plugins')
 
 /**@type {import('webpack'.Configuration)} */
 module.exports = {
@@ -95,6 +96,8 @@ module.exports = {
             // 新的html文件有两个特点：1. 内容和源文件一致 2. 自动引入打包生成的js等资源
             template: path.resolve(__dirname, 'public/index.html'),
         }),
+        //  测试
+        new TestPlugin()
     ],
     // 开发服务器设置
     devServer: {
