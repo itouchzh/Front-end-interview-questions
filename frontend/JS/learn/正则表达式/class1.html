@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let string = 'www.baidu.com'
+        let reg = new RegExp('a', 'g')
+        console.log(reg.test(string));
+        // /w 
+    /*
+    限定符： a* a 出现0次或者多次
+            a+ a出现一次或者多次
+            a? a 出现0次或者1次
+            a{6} a出现6次
+            a{2, 6} a出现2-6次
+            a{2, }a 出现2到多次
+    或运算符：
+    (a|b) 匹配a或者b
+    (ab)|(cd)匹配ab或者cd
+
+    字符类
+    [abc] 匹配a或者b或者c
+    [a-c]同上
+    [a-zA-Z0-9] 匹配大小写+0-9
+    [^0-9] 匹配非数字
+    
+    元字符：
+    \d 匹配数字
+    \D 匹配非数字
+    \w 匹配字母数字下划线
+    \W 匹配非单词
+    \s 匹配空白（包含tab，换行）
+    \S 匹配非空白
+    . 匹配任意字符（换行除外）
+    \b 匹配边界
+    ^ 以什么开头
+    $ 匹配行尾
+    贪婪匹配
+    <.+> 任意字符
+    <.+?> 惰性匹配任意字符
+    
+    */
+    </script>
+</body>
+</html>

@@ -69,6 +69,33 @@
                 }, delay)
             }
             getV100FromInstance('V100-1', 2000)
+            const data = {
+                gpuSpec: 220,
+                instanceId: 'dl-230616201151j9j',
+                instanceName: 'kiss',
+                memory: 0,
+                personDataSet: '0',
+                projectId: 'kiss',
+                publicDataSet: '',
+                remark: '',
+            }
+            const url = 'https://jiutian.10086.cn/edu/dp_platform/resource/index/update_instance'
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    // 处理响应数据
+                })
+                .catch((error) => {
+                    // 处理错误
+                })
+
+                // NVIDIA V100 1卡 CPU 8核 内存 32G（2算力豆/6分钟）
         </script>
     </body>
 </html>

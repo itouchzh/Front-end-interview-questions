@@ -1,5 +1,14 @@
 import { defineConfig } from 'vite'
-export default defineConfig(() => ({
+import path from 'path'
+import MyViteAliases from './plugins/ViteAliases'
+import { createHtmlPlugin } from 'vite-plugin-html'
+export default defineConfig({
+    resolve: {
+        // 配置路径别名
+        alias: {
+            '@': path.resolve(__dirname, './src'),
+        },
+    },
     optimizeDeps: {
         exclude: [],
     },
@@ -24,7 +33,30 @@ export default defineConfig(() => ({
         },
         devSourcemap: false,
         postcss: {
-            plugins:[]
-        }
-    }, // 配置预处理器
-}))
+            plugins: [],
+        },
+    },
+    // 配置打包
+    build: {
+        rollupOptions: {
+            output: {
+                // 文件名字
+                assetFileNames: '[hash].[name].[ext]',
+            },
+        },
+        assetsInlineLimit: 4096, // 4kb，当文件不超过4kb就会输出base64
+        outDir: 'testDist', // 打包输出目录，默认为dist
+        assetsDir: 'static', // 静态资源目录名字
+        emptyOutDir: true, // 清除dist原始打包目录
+    },
+    plugins: [
+        MyViteAliases(),
+        createHtmlPlugin({
+            inject: {
+                data: {
+                    title: '首页',
+                },
+            },
+        }),
+    ],
+})
