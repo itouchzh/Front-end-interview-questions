@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import path from 'path'
 import MyViteAliases from './plugins/ViteAliases'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import { viteMockServe } from 'vite-plugin-mock'
 export default defineConfig({
     resolve: {
         // 配置路径别名
@@ -58,5 +59,6 @@ export default defineConfig({
                 },
             },
         }),
+        viteMockServe()
     ],
 })
