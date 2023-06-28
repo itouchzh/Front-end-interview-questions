@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+            }
+            /*  第一种方式，flex */
+            /* main {
+                width: 100%;
+                height: 100%;
+                display: flex;
+            }
+            .box1 {
+                width: 200px;
+                background-color: antiquewhite;
+            }
+            .box2 {
+                flex: 1;
+                background-color: aquamarine;
+            } */
+            /* 第二种方式，grid布局 */
+            /* main {
+                width: 100%;
+                height: 100%;
+                display: grid;
+                grid-template-columns: 200px 1fr;
+            }
+            .box1 {
+                width: 200px;
+                background-color: antiquewhite;
+            }
+            .box2 {
+                background-color: aquamarine;
+            } */
+
+            /* font-size: 0 */
+            /* main {
+                width: 100%;
+                height: 100%;
+                font-size:0;  
+            }
+            .box1,
+            .box2 {
+                height: 100%;
+                display: inline-block;
+                vertical-align: top; 
+            }
+            .box1 {
+                width: 200px;
+                background-color: antiquewhite;
+            }
+            .box2 {
+                width: calc(100% - 200px);
+                background-color: beige;
+            } */
+
+            /* float 布局 */
+            /* main {
+                height: 100%;
+                width: 100%;
+            }
+            .box1,
+            .box2 {
+                height: 100%;
+                float: left;
+            }
+            .box1 {
+                width: 200px;
+                background-color: antiquewhite;
+            }
+            .box2 {
+                width: calc(100% - 200px);
+                background-color: aquamarine;
+            } */
+
+            main{
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="box1"></div>
+            <div class="box2"></div>
+        </main>
+    </body>
+</html>

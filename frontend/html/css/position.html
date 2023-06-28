@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            /* 
+            relateive相对定位，相对于原来的位置进行定位，不会脱离文档流
+            absolute 绝对定位，相对于非static的最近的元素进行定位，会脱离文档流
+            fixed 固定定位，相对于视口进行定位
+            sticky 粘性定位 
+            */
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            main{
+                height: 3600px;
+            }
+            .box {
+                display: inline-block;
+                width: 100px;
+                height: 100px;
+                background: rgb(34, 128, 156);
+                color: white;
+            }
+
+            #two {
+                position: relative;
+                top: 20px;
+                left: 20px;
+                background: rgb(235, 83, 214);
+            }
+            .box2 {
+                width: 400px;
+                height: 400px;
+                position: fixed;
+                top: 20px;
+                left: 30px;
+                background-color: aqua;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="box" id="one">One</div>
+            <div class="box" id="two">Two</div>
+            <div class="box" id="three">Three</div>
+            <div class="box" id="four">Four</div>
+            <div class="box2"></div>
+        </main>
+    </body>
+</html>
