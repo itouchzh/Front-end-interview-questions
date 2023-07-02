@@ -1,9 +1,9 @@
 ;(window['webpackJsonp'] = window['webpackJsonp'] || []).push([
-    ['chunk-ad565cec'],
+    ['chunk-495a2917'],
     {
-        '006d': function (t, e, a) {
+        3004: function (t, e, a) {
             'use strict'
-            a('7622')
+            a('830b')
         },
         '4b1f': function (t, e, a) {},
         7047: function (t, e) {
@@ -14,7 +14,44 @@
             'use strict'
             a('4b1f')
         },
-        7622: function (t, e, a) {},
+        7782: function (t, e, a) {
+            'use strict'
+            a.d(e, 'a', function () {
+                return n
+            })
+            a('ad80')
+            var i = a('8daa'),
+                s = a('7d67'),
+                r = a('3d67')
+            const n = (t, e) => {
+                    const a = Object(s['c'])(t).url
+                    if (t === s['g'].competition) {
+                        const t = { projectId: e.projectId }
+                        return Object(i['b'])(`/dp_platform/resource/${a}/project_spec`, t).then(o)
+                    }
+                    return Object(i['a'])(`/dp_platform/resource/${a}/spec`).then(o)
+                },
+                o = (t) => {
+                    if (200 == t.code) {
+                        let e = t.data.gpuSpecs
+                        e.map((e) => (e.gpuLeftOK = t.data.specShow[e.specId]))
+                        let a = []
+                        return (
+                            528 === t.data.gpuExceedLimitCode &&
+                                a.push(
+                                    `您最多可同时使用${Object(
+                                        r['i']
+                                    )()}卡，目前剩余可用已不足，请停止其他实例后再试`
+                                ),
+                            512 === t.data.insufficientResCode &&
+                                a.push('目前平台资源不足，请稍后再试'),
+                            (a = a.join(',')),
+                            { list: e, errorText: a }
+                        )
+                    }
+                }
+        },
+        '830b': function (t, e, a) {},
         9275: function (t, e, a) {
             'use strict'
             var i = function () {
@@ -223,7 +260,8 @@
                 d = Object(c['a'])(l, r, n, !1, null, '530fd047', null),
                 u = d.exports,
                 m = a('fa7d'),
-                h = {
+                h = a('f8c8'),
+                p = {
                     components: { rotateCaptch: u },
                     props: {
                         verifyVisible: { type: Boolean, default: !1 },
@@ -244,7 +282,7 @@
                             t ? this.openVerify() : (this.visible = !1)
                         },
                         result(t) {
-                            ;(t !== m['h'].error.text && t !== m['h'].outDate.text) ||
+                            ;(t !== m['m'].error.text && t !== m['m'].outDate.text) ||
                                 setTimeout(() => {
                                     this.refreshVerify()
                                 }, this.delay)
@@ -266,7 +304,7 @@
                                 this.$refs.rotateVerify.resetSlider()
                         },
                         getVerifyInfo() {
-                            this.$http.get('/messaging/sendImageCaptcha', {}, (t) => {
+                            h['i'].getSendImageCaptcha().then((t) => {
                                 'OK' === t.state
                                     ? ((this.verifyImgUrl = t.body.imageBase64),
                                       (this.verifyId = t.body.uuid))
@@ -292,47 +330,13 @@
                         this.clearRefreshTimmer()
                     },
                 },
-                p = h,
-                g = Object(c['a'])(p, i, s, !1, null, null, null)
-            e['a'] = g.exports
+                g = p,
+                f = Object(c['a'])(g, i, s, !1, null, null, null)
+            e['a'] = f.exports
         },
-        afbf: function (t, e, a) {},
-        b254: function (t, e, a) {
+        bcad: function (t, e, a) {
             'use strict'
-            a.d(e, 'a', function () {
-                return n
-            })
-            a('ad80')
-            var i = a('751a'),
-                s = a('1e28'),
-                r = a('3d67')
-            const n = (t, e) => {
-                    const a = Object(s['c'])(t).url
-                    if (t === s['g'].competition) {
-                        const t = { projectId: e.projectId }
-                        return Object(i['POST'])(`/dp_platform/resource/${a}/project_spec`, t).then(
-                            o
-                        )
-                    }
-                    return Object(i['GET'])(`/dp_platform/resource/${a}/spec`).then(o)
-                },
-                o = (t) => {
-                    if (200 == t.code) {
-                        let e = t.data.gpuSpecs
-                        e.map((e) => (e.gpuLeftOK = t.data.specShow[e.specId]))
-                        let a = []
-                        return (
-                            528 === t.data.gpuExceedLimitCode &&
-                                a.push(
-                                    `您最多可同时使用${r['c'].tokenParsed.DLP_TRAIN_USER_GPU_LIMIT}卡，目前剩余可用已不足，请停止其他实例后再试`
-                                ),
-                            512 === t.data.insufficientResCode &&
-                                a.push('目前平台资源不足，请稍后再试'),
-                            (a = a.join(',')),
-                            { list: e, errorText: a }
-                        )
-                    }
-                }
+            a('c82a')
         },
         c052: function (t, e, a) {
             'use strict'
@@ -345,11 +349,11 @@
                         { staticClass: 'wrapper' },
                         [
                             e(
-                                'jt-breadcrumb',
+                                'a-breadcrumb',
                                 { staticClass: 'sub-title breadcrumb' },
                                 [
                                     e(
-                                        'jt-breadcrumb-item',
+                                        'a-breadcrumb-item',
                                         [
                                             e(
                                                 'router-link',
@@ -365,7 +369,7 @@
                                         ],
                                         1
                                     ),
-                                    e('jt-breadcrumb-item', [
+                                    e('a-breadcrumb-item', [
                                         t._v(
                                             ' ' + t._s(t.editMode ? '编辑实例' : '新建实例') + ' '
                                         ),
@@ -373,7 +377,7 @@
                                 ],
                                 1
                             ),
-                            e('jt-remaining-alert', {
+                            e('remaining-alert', {
                                 attrs: {
                                     isDistributedTrain: t.isDistributedTrain,
                                     isEdit: t.editMode,
@@ -449,7 +453,7 @@
                                                 )
                                               : t._e(),
                                           e(
-                                              'jt-configProvider',
+                                              'a-config-provider',
                                               {
                                                   scopedSlots: t._u(
                                                       [
@@ -457,7 +461,7 @@
                                                               key: 'renderEmpty',
                                                               fn: function () {
                                                                   return [
-                                                                      e('jt-empty', {
+                                                                      e('a-empty', {
                                                                           staticStyle: {
                                                                               height: '116px',
                                                                           },
@@ -477,7 +481,7 @@
                                                       ],
                                                       null,
                                                       !1,
-                                                      1111103552
+                                                      613382015
                                                   ),
                                               },
                                               [
@@ -496,7 +500,7 @@
                                                                       ' '
                                                               ),
                                                           ]),
-                                                          e('jt-remaining-alert', {
+                                                          e('remaining-alert', {
                                                               attrs: {
                                                                   pageUrl: this.$route.meta.ajaxUrl,
                                                                   isDistributedTrain:
@@ -514,7 +518,7 @@
                                                               { staticClass: 'form-content' },
                                                               [
                                                                   e(
-                                                                      'jt-row',
+                                                                      'a-row',
                                                                       {
                                                                           staticClass:
                                                                               'form-row input-row',
@@ -522,7 +526,7 @@
                                                                       },
                                                                       [
                                                                           e(
-                                                                              'jt-col',
+                                                                              'a-col',
                                                                               {
                                                                                   staticClass:
                                                                                       'row-title',
@@ -538,7 +542,7 @@
                                                                               ]
                                                                           ),
                                                                           e(
-                                                                              'jt-col',
+                                                                              'a-col',
                                                                               {
                                                                                   staticClass:
                                                                                       'row-content',
@@ -547,7 +551,7 @@
                                                                                   },
                                                                               },
                                                                               [
-                                                                                  e('jt-input', {
+                                                                                  e('a-input', {
                                                                                       staticClass:
                                                                                           'jt-input',
                                                                                       class: {
@@ -642,7 +646,7 @@
                                                                   ),
                                                                   1 === t.$route.meta.showDataset
                                                                       ? e(
-                                                                            'jt-row',
+                                                                            'a-row',
                                                                             {
                                                                                 staticClass:
                                                                                     'form-row input-row',
@@ -652,7 +656,7 @@
                                                                             },
                                                                             [
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-title',
@@ -667,7 +671,7 @@
                                                                                     ]
                                                                                 ),
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-content dataset-content',
@@ -723,7 +727,7 @@
                                                                                                                   a
                                                                                                               ) {
                                                                                                                   return e(
-                                                                                                                      'jt-tag',
+                                                                                                                      'a-tag',
                                                                                                                       {
                                                                                                                           key: a.dataName,
                                                                                                                           attrs: {
@@ -783,7 +787,7 @@
                                                                         )
                                                                       : t._e(),
                                                                   e(
-                                                                      'jt-row',
+                                                                      'a-row',
                                                                       {
                                                                           staticClass:
                                                                               'form-row input-row',
@@ -791,7 +795,7 @@
                                                                       },
                                                                       [
                                                                           e(
-                                                                              'jt-col',
+                                                                              'a-col',
                                                                               {
                                                                                   staticClass:
                                                                                       'row-title',
@@ -807,7 +811,7 @@
                                                                               ]
                                                                           ),
                                                                           e(
-                                                                              'jt-col',
+                                                                              'a-col',
                                                                               {
                                                                                   staticClass:
                                                                                       'row-content',
@@ -817,7 +821,7 @@
                                                                               },
                                                                               [
                                                                                   e(
-                                                                                      'jt-select',
+                                                                                      'a-select',
                                                                                       {
                                                                                           staticStyle:
                                                                                               {
@@ -871,7 +875,7 @@
                                                                                               i
                                                                                           ) {
                                                                                               return e(
-                                                                                                  'jt-select-option',
+                                                                                                  'a-select-option',
                                                                                                   {
                                                                                                       key: i,
                                                                                                       attrs: {
@@ -959,7 +963,7 @@
                                                                       t.$route.meta.ajaxUrl
                                                                   ].showImageName
                                                                       ? e(
-                                                                            'jt-row',
+                                                                            'a-row',
                                                                             {
                                                                                 staticClass:
                                                                                     'form-row input-row',
@@ -969,7 +973,7 @@
                                                                             },
                                                                             [
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-title',
@@ -989,7 +993,7 @@
                                                                                     ]
                                                                                 ),
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-content',
@@ -999,7 +1003,7 @@
                                                                                     },
                                                                                     [
                                                                                         e(
-                                                                                            'jt-select',
+                                                                                            'a-select',
                                                                                             {
                                                                                                 staticStyle:
                                                                                                     {
@@ -1045,7 +1049,7 @@
                                                                                                     i
                                                                                                 ) {
                                                                                                     return e(
-                                                                                                        'jt-select-option',
+                                                                                                        'a-select-option',
                                                                                                         {
                                                                                                             key: i,
                                                                                                             attrs: {
@@ -1073,9 +1077,9 @@
                                                                             1
                                                                         )
                                                                       : t._e(),
-                                                                  '1' == t.SHOW_INSTANCE_REMARK
+                                                                  t.showInstanceRemarkEnv
                                                                       ? e(
-                                                                            'jt-row',
+                                                                            'a-row',
                                                                             {
                                                                                 staticClass:
                                                                                     'form-row input-row',
@@ -1085,7 +1089,7 @@
                                                                             },
                                                                             [
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-title',
@@ -1105,7 +1109,7 @@
                                                                                     ]
                                                                                 ),
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-content',
@@ -1122,7 +1126,7 @@
                                                                                             },
                                                                                             [
                                                                                                 e(
-                                                                                                    'jt-input',
+                                                                                                    'a-input',
                                                                                                     {
                                                                                                         staticClass:
                                                                                                             'jt-input',
@@ -1307,9 +1311,9 @@
                                                                             1
                                                                         )
                                                                       : t._e(),
-                                                                  t.SHOW_STORAGE
+                                                                  t.showStorageEnv
                                                                       ? e(
-                                                                            'jt-row',
+                                                                            'a-row',
                                                                             {
                                                                                 staticClass:
                                                                                     'form-row',
@@ -1319,7 +1323,7 @@
                                                                             },
                                                                             [
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-title',
@@ -1335,7 +1339,7 @@
                                                                                     ]
                                                                                 ),
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-content buy-info',
@@ -1352,7 +1356,7 @@
                                                                                                 ' '
                                                                                         ),
                                                                                         e(
-                                                                                            'jt-remaining-alert',
+                                                                                            'remaining-alert',
                                                                                             {
                                                                                                 attrs: {
                                                                                                     isEdit: t.editMode,
@@ -1370,7 +1374,7 @@
                                                                       : t._e(),
                                                                   1 === t.$route.meta.showDataset
                                                                       ? e(
-                                                                            'jt-row',
+                                                                            'a-row',
                                                                             {
                                                                                 staticClass:
                                                                                     'form-row',
@@ -1380,7 +1384,7 @@
                                                                             },
                                                                             [
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-title',
@@ -1396,7 +1400,7 @@
                                                                                     ]
                                                                                 ),
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-content buy-info',
@@ -1417,7 +1421,7 @@
                                                                                     ]
                                                                                 ),
                                                                                 e(
-                                                                                    'jt-col',
+                                                                                    'a-col',
                                                                                     {
                                                                                         staticClass:
                                                                                             'row-content buy-info',
@@ -1500,14 +1504,14 @@
                                                                         )
                                                                       : t._e(),
                                                                   e(
-                                                                      'jt-row',
+                                                                      'a-row',
                                                                       {
                                                                           staticClass: 'form-row',
                                                                           attrs: { gutter: 16 },
                                                                       },
                                                                       [
                                                                           e(
-                                                                              'jt-col',
+                                                                              'a-col',
                                                                               {
                                                                                   staticClass:
                                                                                       'row-content',
@@ -1525,7 +1529,7 @@
                                                                                       },
                                                                                       [
                                                                                           e(
-                                                                                              'jt-button',
+                                                                                              'a-button',
                                                                                               {
                                                                                                   staticClass:
                                                                                                       'button',
@@ -1558,7 +1562,7 @@
                                                                                                   .showCancel ||
                                                                                           t.editMode
                                                                                               ? e(
-                                                                                                    'jt-button',
+                                                                                                    'a-button',
                                                                                                     {
                                                                                                         staticClass:
                                                                                                             'button',
@@ -1620,31 +1624,23 @@
                     )
                 },
                 s = [],
-                r = (a('ad80'), a('375d')),
-                n = a('36af'),
-                o = a('674f'),
-                l = a('e69a'),
-                c = a('12ad'),
-                d = a('be40'),
-                u = a('751a'),
-                m = a('e53b'),
-                h = a('fabc'),
-                p = a('b254'),
-                g = a('fa7d'),
-                f = a('1e28'),
-                v = a('9275'),
-                b = {
+                r = (a('ad80'), a('12ad')),
+                n = a('be40'),
+                o = a('e53b'),
+                l = a('e417'),
+                c = a('7782'),
+                d = a('fa7d'),
+                u = a('7d67'),
+                m = a('9275'),
+                h = a('f121'),
+                p = a('f8c8'),
+                g = a('8daa'),
+                f = {
                     name: 'creat-data',
                     components: {
-                        'jt-select': r['d'],
-                        'jt-select-option': r['d'].Option,
-                        'jt-breadcrumb': n['a'],
-                        'jt-breadcrumb-item': n['a'].Item,
-                        JtEmpty: o['a'],
-                        jtConfigProvider: l['a'],
-                        jtRemainingAlert: d['a'],
-                        datasetSelector: m['a'],
-                        rotateCaptchModal: v['a'],
+                        remainingAlert: n['a'],
+                        datasetSelector: o['a'],
+                        rotateCaptchModal: m['a'],
                     },
                     watch: {
                         'formData.instanceName'(t) {
@@ -1660,7 +1656,9 @@
                     },
                     data() {
                         return {
-                            instanceTypeArray: f['g'],
+                            showStorageEnv: h['v'],
+                            showInstanceRemarkEnv: h['s'],
+                            instanceTypeArray: u['g'],
                             visible: !1,
                             nameLimit: 30,
                             descriptionLimit: { min: 20, max: 80 },
@@ -1691,16 +1689,13 @@
                             available: {},
                             instanceInfo: {},
                             getInstanceNameRepeatTimeout: null,
-                            usagesType: h['f'],
-                            projectTypeDisplayRule: f['h'],
+                            usagesType: u['j'],
+                            projectTypeDisplayRule: u['h'],
                             rotateCaptchModalRef: null,
                             verifyVisible: !1,
                         }
                     },
                     computed: {
-                        SHOW_STORAGE() {
-                            return +window.envSetting.SHOW_STORAGE
-                        },
                         getParamsData() {
                             return this.$route.params.item
                                 ? JSON.parse(this.$route.params.item)
@@ -1711,17 +1706,14 @@
                                 .find((t) => 'Home' === t.name)
                                 .children.find((t) => t.name === this.getParamsData.fromPage)
                         },
-                        SHOW_INSTANCE_REMARK() {
-                            return window.envSetting.SHOW_INSTANCE_REMARK
-                        },
                         getAlertHideStatus() {
-                            return (t) => Object(g['c'])(t)
+                            return (t) => Object(d['e'])(t)
                         },
                         showAvailableCountAlert() {
                             return (
                                 this.$store.state.summaryData.availableCount < 0.1 &&
                                 !this.getAlertHideStatus('summaryDataAlert') &&
-                                f['g'][this.$route.meta.ajaxUrl] !== f['g'].job
+                                u['g'][this.$route.meta.ajaxUrl] !== u['g'].job
                             )
                         },
                         getInstanceDetail() {
@@ -1736,9 +1728,6 @@
                             }
                             return e
                         },
-                        ENABLE_DISTRIBUTE_STORAGE() {
-                            return '1' == window.envSetting.ENABLE_DISTRIBUTE_STORAGE
-                        },
                         isDistributedTrain() {
                             return this.$route.path.includes('distributed_train')
                         },
@@ -1746,8 +1735,8 @@
                             let t = !1
                             if (
                                 this.$store.state.remainingAlertInit &&
-                                this.SHOW_STORAGE &&
-                                !Object(g['c'])('remainingAlert')
+                                this.showStorageEnv &&
+                                !Object(d['e'])('remainingAlert')
                             ) {
                                 const e = {
                                     usages:
@@ -1769,11 +1758,8 @@
                                         ),
                                 }
                                 for (const a in e) {
-                                    if (!this.SHOW_STORAGE) break
-                                    if (
-                                        (this.ENABLE_DISTRIBUTE_STORAGE || 'usages' !== a) &&
-                                        e[a]
-                                    ) {
+                                    if (!this.showStorageEnv) break
+                                    if ((h['c'] || 'usages' !== a) && e[a]) {
                                         t = !0
                                         break
                                     }
@@ -1782,7 +1768,7 @@
                             return t
                         },
                         getUsage() {
-                            return this.isDistributedTrain && this.ENABLE_DISTRIBUTE_STORAGE
+                            return this.isDistributedTrain && h['c']
                                 ? isNaN(this.$store.state.usages.available)
                                     ? 'NA'
                                     : this.$store.getters.getUsage(
@@ -1803,8 +1789,8 @@
                         ;(this.instanceId =
                             this.$route.query.projectId || this.$route.query.instanceId),
                             (this.editMode = (() =>
-                                f['g'][this.$route.meta.ajaxUrl] !== f['g'].job &&
-                                (f['g'][this.$route.meta.ajaxUrl] === f['g'].competition
+                                u['g'][this.$route.meta.ajaxUrl] !== u['g'].job &&
+                                (u['g'][this.$route.meta.ajaxUrl] === u['g'].competition
                                     ? '1' === this.$route.query.hasInstance
                                     : this.$route.query.projectId ||
                                       this.$route.query.instanceId))()),
@@ -1820,17 +1806,17 @@
                             })
                     },
                     methods: {
-                        ...Object(c['b'])(['searchRemainingCapacity', 'getUserOverview']),
+                        ...Object(r['b'])(['searchRemainingCapacity', 'getUserOverview']),
                         getInstanceInfo() {
                             return new Promise((t) => {
-                                let e = Object(f['c'])(f['g'][this.$route.meta.ajaxUrl]).urls
+                                let e = Object(u['c'])(u['g'][this.$route.meta.ajaxUrl]).urls
                                     .instance_state_by_project
                                 const a = {},
-                                    i = f['g'][this.$route.meta.ajaxUrl] === f['g'].competition
+                                    i = u['g'][this.$route.meta.ajaxUrl] === u['g'].competition
                                 i
                                     ? (a.projectId = this.instanceId)
                                     : (a.instanceIds = this.instanceId),
-                                    this.$http.get(e, a, (e) => {
+                                    Object(g['a'])(e, a).then((e) => {
                                         var a
                                         200 == e.code &&
                                             ((this.instanceInfo = i
@@ -1865,7 +1851,7 @@
                             })
                         },
                         getComputeMgr() {
-                            Object(u['GET'])('/accounting/web/computemgr/summary').then((t) => {
+                            p['a'].getSummary().then((t) => {
                                 t.errorCode || (this.computeMgrSummary = t.body)
                             })
                         },
@@ -1913,16 +1899,7 @@
                             this.getRemainingStorage()
                         },
                         getRemainingStorage() {
-                            this.searchRemainingCapacity(() => {
-                                this.remainingStorage = this.dataSizeFormat(
-                                    1024 *
-                                        this.$store.state.remainingCapacity.available *
-                                        1024 *
-                                        1024,
-                                    2,
-                                    !1
-                                )
-                            })
+                            this.searchRemainingCapacity()
                         },
                         showDrawer() {
                             this.visible = !0
@@ -1931,8 +1908,8 @@
                             this.visible = !1
                         },
                         getGpuSpec() {
-                            Object(p['a'])(
-                                f['g'][this.$route.meta.ajaxUrl],
+                            Object(c['a'])(
+                                u['g'][this.$route.meta.ajaxUrl],
                                 this.$route.query ? this.$route.query : {}
                             ).then((t) => {
                                 ;(this.GpuSpecList = t.list),
@@ -1958,7 +1935,7 @@
                             )
                                 return
                             const a = { specId: t }
-                            this.$http.get('/dp_platform/resource/image/spec_image', a, (t) => {
+                            p['e'].getSpecImage(a).then((t) => {
                                 var a
                                 200 === t.code &&
                                     ((this.imageNameList = t.data),
@@ -1978,9 +1955,9 @@
                             })
                         },
                         getAvailable() {
-                            this.$http.get('/accounting/web/computemgr/available', {}, (t) => {
+                            p['a'].getAvailable().then((t) => {
                                 'OK' === t.state &&
-                                    f['g'][this.$route.meta.ajaxUrl] !== f['g'].job &&
+                                    u['g'][this.$route.meta.ajaxUrl] !== u['g'].job &&
                                     (this.available = t.body.specMap)
                             })
                         },
@@ -2032,52 +2009,29 @@
                                 return void this.clearErrorType()
                             if (this.testNameError()) return void this.clearErrorType()
                             const t = `/dp_platform/resource/${this.$route.meta.ajaxUrl}/instance_repeat`
-                            this.$http.get(
-                                t,
-                                {
-                                    instanceName: this.formData.instanceName.trim(),
-                                    userId: this.$store.state.userId,
-                                },
-                                (t) => {
-                                    ;(this.submitBtnLoading = !1),
-                                        200 == t.code &&
-                                            ((this.instanceNameRepeat = t.data.instanceNameRepeat),
-                                            this.instanceNameRepeat
-                                                ? (this.instanceNameErrorText =
-                                                      '已有该实例名称，请重新命名')
-                                                : this.clearErrorType())
-                                }
-                            )
-                        },
-                        dataSizeFormat(t, e = 2, a = !0) {
-                            if (null === t || void 0 === t || '' === t) return '0.00 KB'
-                            const i = void 0 === t.size ? t : t.size
-                            if (0 === i) return '0.00 KB'
-                            let s = ''
-                            return (
-                                i / 1024 < 1
-                                    ? ((s = (100 * Math.ceil(i)) / 100), (s = s.toFixed(e) + ' B'))
-                                    : i / 1024 / 1024 < 1
-                                    ? ((s = (100 * Math.ceil(i / 1024)) / 100),
-                                      (s = s.toFixed(e) + ' KB'))
-                                    : i / 1024 / 1024 / 1024 < 1
-                                    ? ((s = Math.ceil((i / 1024 / 1024) * 100) / 100),
-                                      (s = s.toFixed(e) + ' MB'))
-                                    : ((s = Math.ceil((i / 1024 / 1024 / 1024) * 100) / 100),
-                                      (s = s.toFixed(e) + ' GB')),
-                                s
-                            )
+                            Object(g['a'])(t, {
+                                instanceName: this.formData.instanceName.trim(),
+                                userId: this.$store.state.userId,
+                            }).then((t) => {
+                                ;(this.submitBtnLoading = !1),
+                                    200 == t.code &&
+                                        ((this.instanceNameRepeat = t.data.instanceNameRepeat),
+                                        this.instanceNameRepeat
+                                            ? (this.instanceNameErrorText =
+                                                  '已有该实例名称，请重新命名')
+                                            : this.clearErrorType())
+                            })
                         },
                         ableClickCreateBtn() {
                             var t, e
                             let a = !1
                             for (const i in this.formData)
-                                ('remark' === i && '0' == this.SHOW_INSTANCE_REMARK) ||
-                                    (('imageId' !== i ||
+                                ('remark' !== i || h['s']) &&
+                                    ('imageId' !== i ||
                                         this.projectTypeDisplayRule[this.$route.meta.ajaxUrl]
                                             .showImageName) &&
-                                        ((void 0 !== this.formData[i] && '' !== this.formData[i]) ||
-                                            (a = !0)))
+                                    ((void 0 !== this.formData[i] && '' !== this.formData[i]) ||
+                                        (a = !0))
                             return (
                                 this.GpuSpecList.find((t) => 200 === t.gpuLeftOK) || (a = !0),
                                 '' !== this.formData.remark &&
@@ -2093,13 +2047,13 @@
                                     this.$store.state.overViewData.all.runningInstanceQuota ||
                                     this.editMode ||
                                     (a = !0),
-                                this.isDistributedTrain && this.ENABLE_DISTRIBUTE_STORAGE
+                                this.isDistributedTrain && h['c']
                                     ? this.$store.state.usages.available ||
-                                      !this.SHOW_STORAGE ||
+                                      !this.showStorageEnv ||
                                       this.editMode ||
                                       (a = !0)
                                     : this.$store.state.remainingCapacity.available ||
-                                      !this.SHOW_STORAGE ||
+                                      !this.showStorageEnv ||
                                       this.editMode ||
                                       (a = !0),
                                 a || this.instanceNameRepeat || this.testNameError()
@@ -2109,7 +2063,7 @@
                             this.$router.go(-1)
                         },
                         createInstance(t) {
-                            console.log(t, this.formData)
+                            console.log("success");
                             const e = this.$createElement,
                                 a = this.editMode
                                     ? `/dp_platform/resource/${this.$route.meta.ajaxUrl}/update_instance`
@@ -2118,24 +2072,24 @@
                                 this.$store.commit('changeSubmitLoading', { show: !0 })
                             const i = { ...this.formData, verifyCode: t, gpuSpec: 2 }
                             this.$route.meta.showDataset &&
-                                ((i.personDataSet = Object(h['d'])(
+                                ((i.personDataSet = Object(l['d'])(
                                     this.selectedRows.personDataSet
                                 )),
-                                (i.publicDataSet = Object(h['e'])(
+                                (i.publicDataSet = Object(l['e'])(
                                     this.selectedRows.publicDataSet
                                 ))),
                                 (i.instanceName = i.instanceName.trim()),
                                 (i.projectId = i.projectId.trim()),
                                 this.editMode && (i.instanceId = this.instanceInfo.instanceId),
-                                this.$http.post(a, i, (t) => {
-                                    var a
+                                Object(g['b'])(a, i).then((t) => {
                                     if (
                                         ((this.submitBtnLoading = !1),
                                         this.$store.commit('changeSubmitLoading', { show: !1 }),
-                                        t.code !== g['h'].verify.code)
+                                        t.code !== d['m'].verify.code)
                                     )
-                                        if (t.code !== g['h'].error.code)
-                                            if (t.code !== g['h'].outDate.code)
+                                        if (t.code !== d['m'].error.code)
+                                            if (t.code !== d['m'].outDate.code) {
+                                                var a
                                                 if (200 == t.code)
                                                     (null !== (a = t.data) &&
                                                         void 0 !== a &&
@@ -2143,20 +2097,24 @@
                                                     this.editMode
                                                         ? this.editMode
                                                             ? this.cancelBtn()
-                                                            : [
-                                                                  f['g'].index,
-                                                                  f['g'].distributed_train,
-                                                                  f['g'].task_model,
-                                                                  f['g'].model_train,
+                                                            : (this.$message.success(
+                                                                  `实例【${i.instanceName}】启动中`
+                                                              ),
+                                                              [
+                                                                  u['g'].index,
+                                                                  u['g'].distributed_train,
+                                                                  u['g'].task_model,
+                                                                  u['g'].model_train,
                                                               ].includes(
-                                                                  f['g'][this.$route.meta.ajaxUrl]
+                                                                  u['g'][this.$route.meta.ajaxUrl]
                                                               )
-                                                            ? this.$router.push(
-                                                                  '/home/' + this.$route.meta.url
-                                                              )
-                                                            : this.$router.push(
-                                                                  `/home/${this.$route.meta.url}/instance-info/${this.$route.query.projectId}`
-                                                              )
+                                                                  ? this.$router.push(
+                                                                        '/home/' +
+                                                                            this.$route.meta.url
+                                                                    )
+                                                                  : this.$router.push(
+                                                                        `/home/${this.$route.meta.url}/instance-info/${this.$route.query.projectId}`
+                                                                    ))
                                                         : this.$message.error('新建实例失败')
                                                 else if (
                                                     '510' == t.code ||
@@ -2175,8 +2133,8 @@
                                                         description: e('p', [t.msg]),
                                                     })
                                                 else if (t.error) {
-                                                    let a = Object(f['c'])(
-                                                        f['g'][this.$route.meta.ajaxUrl]
+                                                    let a = Object(u['c'])(
+                                                        u['g'][this.$route.meta.ajaxUrl]
                                                     ).typeDisplayName
                                                     this.$modelErrorNotification(t.code, {
                                                         message: this.editMode
@@ -2193,35 +2151,122 @@
                                                             : null,
                                                         description: e('p', [t.msg || '实例错误']),
                                                     })
-                                            else
+                                                this.verifyVisible = !1
+                                            } else
                                                 this.$refs.rotateCaptchModalRef.setResult(
-                                                    g['h'].outDate.text
+                                                    d['m'].outDate.text
                                                 )
                                         else
                                             this.$refs.rotateCaptchModalRef.setResult(
-                                                g['h'].error.text
+                                                d['m'].error.text
                                             )
                                     else this.verifyVisible = !0
                                 })
                         },
                         closeAlert() {
-                            Object(g['a'])('summaryDataAlert')
+                            Object(d['a'])('summaryDataAlert')
                         },
                         rotateCaptchModalEnd(t) {
-                            this.$refs.rotateCaptchModalRef.setResult(g['h'].verify.text),
+                            this.$refs.rotateCaptchModalRef.setResult(d['m'].verify.text),
                                 this.createInstance(t)
                         },
-                        ...Object(c['b'])(['getECloudToken']),
+                        ...Object(r['b'])(['getECloudToken']),
                     },
                 },
-                y = b,
-                S = (a('006d'), a('bf56')),
-                w = Object(S['a'])(y, i, s, !1, null, '3e61410a', null)
-            e['default'] = w.exports
+                v = f,
+                b = (a('3004'), a('bf56')),
+                y = Object(b['a'])(v, i, s, !1, null, '9f67e878', null)
+            e['default'] = y.exports
         },
-        c7dc: function (t, e, a) {
+        c82a: function (t, e, a) {},
+        e417: function (t, e, a) {
             'use strict'
-            a('afbf')
+            a.d(e, 'd', function () {
+                return l
+            }),
+                a.d(e, 'e', function () {
+                    return c
+                }),
+                a.d(e, 'a', function () {
+                    return d
+                }),
+                a.d(e, 'b', function () {
+                    return u
+                }),
+                a.d(e, 'c', function () {
+                    return m
+                })
+            var i = a('453f'),
+                s = a.n(i),
+                r = a('deaf'),
+                n = a('7d67'),
+                o = a('fa7d')
+            const l = (t) => t.map((t) => t.dataName).join(','),
+                c = (t) => t.map((t) => [t.dataName, t.projectId].join(';')).join(','),
+                d = (t) => {
+                    for (const e in t) {
+                        const a = t[e]
+                        a.instanceStatus == n['a'].RUNING &&
+                            (t[e].useTime = Object(o['c'])(a.useTime))
+                    }
+                    return new Promise((e) => {
+                        e(t)
+                    })
+                },
+                u = (t) => {
+                    const e = t.split('?')[0],
+                        a = e.substring(p(e, '/', 2) + 1),
+                        i = t.split('?')[1].split('=')[1],
+                        r = `${e.replace('/lab', '')}/login?next=${encodeURIComponent('/' + a)}`
+                    return s()({ url: e })
+                        .then((t) => {
+                            const e =
+                                h('_xsrf') ||
+                                t.data.match(
+                                    /<input type="hidden" name="_xsrf" value="(\S*)"\/>/
+                                )[1]
+                            g(r, { _xsrf: e, password: i })
+                        })
+                        .catch(() => {})
+                },
+                m = (t) => {
+                    const e = t.vscodeURL
+                            .substring(p(t.vscodeURL, '/', 2) + 1)
+                            .replace('/login', ''),
+                        a = r['default'].prototype.$browser
+                    if ('Safari' !== a)
+                        return s()({ url: t.vscodeURL })
+                            .then(() => {
+                                g(t.vscodeURL, { base: e, password: t.podPwd })
+                            })
+                            .catch(() => {})
+                    {
+                        const a = '/' === e.charAt(0) ? e.slice(1, e.length) : e
+                        g(t.vscodeURL, { currentBase: a, password: t.podPwd })
+                    }
+                }
+            function h(t) {
+                let e
+                const a = new RegExp('(^| )' + t + '=([^;]*)(;|$)')
+                return (e = document.cookie.match(a)) ? unescape(e[2]) : null
+            }
+            function p(t, e, a) {
+                let i = t.indexOf(e)
+                for (let s = 0; s < a; s++) i = t.indexOf(e, i + 1)
+                return i
+            }
+            function g(t, e) {
+                var a = document.createElement('form')
+                for (var i in ((a.action = t),
+                (a.target = '_blank'),
+                (a.method = 'post'),
+                (a.style.display = 'none'),
+                e)) {
+                    var s = document.createElement('input')
+                    ;(s.name = i), (s.value = e[i]), a.appendChild(s)
+                }
+                document.body.appendChild(a), a.submit()
+            }
         },
         e53b: function (t, e, a) {
             'use strict'
@@ -2441,7 +2486,7 @@
                                                           [t._v('每页显示')]
                                                       ),
                                                       e(
-                                                          'jt-select',
+                                                          'a-select',
                                                           {
                                                               staticStyle: {
                                                                   'min-width': '50px',
@@ -2456,7 +2501,7 @@
                                                               },
                                                           },
                                                           [
-                                                              e('jt-icon', {
+                                                              e('a-icon', {
                                                                   style: {
                                                                       color: '#606266',
                                                                       marginRight: '-7px',
@@ -2468,17 +2513,17 @@
                                                                   slot: 'suffixIcon',
                                                               }),
                                                               e(
-                                                                  'jt-select-option',
+                                                                  'a-select-option',
                                                                   { attrs: { value: 5 } },
                                                                   [t._v('5')]
                                                               ),
                                                               e(
-                                                                  'jt-select-option',
+                                                                  'a-select-option',
                                                                   { attrs: { value: 10 } },
                                                                   [t._v('10')]
                                                               ),
                                                               e(
-                                                                  'jt-select-option',
+                                                                  'a-select-option',
                                                                   { attrs: { value: 20 } },
                                                                   [t._v('20')]
                                                               ),
@@ -2492,7 +2537,7 @@
                                               e(
                                                   'div',
                                                   [
-                                                      e('jt-pagination', {
+                                                      e('a-pagination', {
                                                           staticStyle: { 'text-align': 'right' },
                                                           attrs: {
                                                               showQuickJumper: '',
@@ -2515,14 +2560,12 @@
                     )
                 },
                 s = [],
-                r = a('fee5'),
-                n = a('751a'),
-                o = {
+                r = a('f8c8'),
+                n = {
                     props: {
                         visible: Boolean,
                         selectedRows: { personDataSet: Array, publicDataSet: Array },
                     },
-                    components: { JtPagination: r['a'] },
                     data() {
                         return {
                             keyword: '',
@@ -2614,10 +2657,7 @@
                                 })
                         },
                         getPersonDataSet(t) {
-                            return Object(n['POST'])(
-                                '/dataset/web/personalDataset/findByUserId/myDataset',
-                                t
-                            ).then((t) => {
+                            return r['c'].findMyDataset(t).then((t) => {
                                 let e = [],
                                     a = 0
                                 return (
@@ -2634,7 +2674,7 @@
                             })
                         },
                         getPublicDataSet(t) {
-                            return Object(n['POST'])('/dataset/web/dataList', t).then((t) => {
+                            return r['c'].postDataList(t).then((t) => {
                                 let e = [],
                                     a = 0
                                 return (
@@ -2659,108 +2699,10 @@
                         },
                     },
                 },
-                l = o,
-                c = (a('c7dc'), a('bf56')),
-                d = Object(c['a'])(l, i, s, !1, null, '141f8cae', null)
-            e['a'] = d.exports
-        },
-        fabc: function (t, e, a) {
-            'use strict'
-            a.d(e, 'd', function () {
-                return m
-            }),
-                a.d(e, 'e', function () {
-                    return h
-                }),
-                a.d(e, 'a', function () {
-                    return p
-                }),
-                a.d(e, 'f', function () {
-                    return g
-                }),
-                a.d(e, 'b', function () {
-                    return o
-                }),
-                a.d(e, 'c', function () {
-                    return l
-                })
-            var i = a('1e28'),
-                s = a('453f'),
-                r = a.n(s),
-                n = a('deaf')
-            const o = (t) => {
-                    const e = t.split('?')[0],
-                        a = e.substring(d(e, '/', 2) + 1),
-                        i = t.split('?')[1].split('=')[1],
-                        s = `${e.replace('/lab', '')}/login?next=${encodeURIComponent('/' + a)}`
-                    return r()({ url: e })
-                        .then((t) => {
-                            const e =
-                                c('_xsrf') ||
-                                t.data.match(
-                                    /<input type="hidden" name="_xsrf" value="(\S*)"\/>/
-                                )[1]
-                            u(s, { _xsrf: e, password: i })
-                        })
-                        .catch(() => {})
-                },
-                l = (t) => {
-                    const e = t.vscodeURL
-                            .substring(d(t.vscodeURL, '/', 2) + 1)
-                            .replace('/login', ''),
-                        a = n['default'].prototype.$browser
-                    if ('Safari' !== a)
-                        return r()({ url: t.vscodeURL })
-                            .then(() => {
-                                u(t.vscodeURL, { base: e, password: t.podPwd })
-                            })
-                            .catch(() => {})
-                    {
-                        const a = '/' === e.charAt(0) ? e.slice(1, e.length) : e
-                        u(t.vscodeURL, { currentBase: a, password: t.podPwd })
-                    }
-                }
-            function c(t) {
-                let e
-                const a = new RegExp('(^| )' + t + '=([^;]*)(;|$)')
-                return (e = document.cookie.match(a)) ? unescape(e[2]) : null
-            }
-            function d(t, e, a) {
-                let i = t.indexOf(e)
-                for (let s = 0; s < a; s++) i = t.indexOf(e, i + 1)
-                return i
-            }
-            function u(t, e) {
-                var a = document.createElement('form')
-                for (var i in ((a.action = t),
-                (a.target = '_blank'),
-                (a.method = 'post'),
-                (a.style.display = 'none'),
-                e)) {
-                    var s = document.createElement('input')
-                    ;(s.name = i), (s.value = e[i]), a.appendChild(s)
-                }
-                document.body.appendChild(a), a.submit()
-            }
-            const m = (t) => t.map((t) => t.dataName).join(','),
-                h = (t) => t.map((t) => [t.dataName, t.projectId].join(';')).join(','),
-                p = (t) => {
-                    for (const e in t) {
-                        const a = t[e]
-                        if (!/:/g.test(a.useTime) || a.instanceStatus != i['a'].RUNING) continue
-                        const s = a.useTime.split(':')
-                        let [r, n, o] = [Number(s[0]), Number(s[1]), Number(s[2])]
-                        o++, o >= 60 && ((o = 0), n++), n >= 60 && ((n = 0), r++)
-                        const l = `${r < 10 ? '0' + r : r}:${n < 10 ? '0' + n : n}:${
-                            o < 10 ? '0' + o : o
-                        }`
-                        t[e].useTime = l
-                    }
-                    return new Promise((e) => {
-                        e(t)
-                    })
-                },
-                g = { usages: 'usages', remainingCapacity: 'remainingCapacity' }
+                o = n,
+                l = (a('bcad'), a('bf56')),
+                c = Object(l['a'])(o, i, s, !1, null, '25b1e164', null)
+            e['a'] = c.exports
         },
     },
 ])

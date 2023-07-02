@@ -10,12 +10,34 @@
         <script>
             // promise.all 可以接收一个可以遍历的参数，如果有一个reject，则立刻返回，否则等全部的promise执行完后，返回一个promise对象
             // promise.all 一起发送多个promise请求
+            // 使用一个数组接收参数，遍历数组，拿到所有的item返回的结果，这里要注意，关键点是如何保证所有按顺序进行，一起返回
             function promiseAll(iterable) {
                 return new Promise((resolve, reject) => {
                     const promises = Array.from(iterable)
                     const result = []
                     let count = 0
                     for (let i = 0; i < promises.length; i++) {
+                        Promise.resolve(promises[i])
+                            .then((res) => {
+                                result[i] = res
+                                count++
+                                if (count === promises.length) {
+                                    resolve(result)
+                                }
+                            })
+                            .catch((err) => reject(err))
+                    }
+                })
+            }
+            // 可以在可迭代对像上使用，返回结果与传递数据一致且返回一个promise对象
+            function promiseAll(iterable) {
+                return new Promise((resolve, reject) => {
+                    const promises = Array.from(iterable)
+                    const arr = [...iterable]
+                    const result = new Array(arr.length)
+                    // 计数，防止顺序错乱以及没有请求完成
+                    let count = 0
+                    for (let i = 0, len = promises.length; i < len; i++) {
                         Promise.resolve(promises[i])
                             .then((res) => {
                                 result[i] = res
