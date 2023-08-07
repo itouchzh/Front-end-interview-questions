@@ -64,6 +64,24 @@
             //     })
             //     .catch((err) => console.log(err))
 
+            function myPromiseAll(iterable) {
+                // 将可迭代对象放进数组中
+                const arr = Array.from([...iterable])
+                const result = Array(arr.length)
+                let count = 0
+                for (let i = 0, len = arr.length; i < len; i++) {
+                    Promise.resolve(arr[i])
+                        .then((res) => {
+                            result[i] = res
+                            count++
+                            if (count === len) {
+                                resolve(result)
+                            }
+                        })
+                        .catch((reason) => reject(reason))
+                }
+            }
+            
             const map = new Map()
             map.set('name', 'paul')
             map.set('age', 23)
