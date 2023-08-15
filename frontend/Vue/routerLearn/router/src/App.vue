@@ -1,8 +1,8 @@
 <template>
-  <Ref />
+  <router-view></router-view>
 </template>
 <script setup lang="ts">
-import Ref from './components/Ref.vue'
+
 
 </script>
 

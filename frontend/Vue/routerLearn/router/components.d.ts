@@ -15,14 +15,17 @@ declare module '@vue/runtime-core' {
     Bro3: typeof import('./src/components/Brothers/Bro3.vue')['default']
     ElButoon: typeof import('element-plus/es')['ElButoon']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElInput: typeof import('element-plus/es')['ElInput']
     Father: typeof import('./src/components/FatherAndGrandSon/Father.vue')['default']
     GroundSon: typeof import('./src/components/FatherAndGrandSon/GroundSon.vue')['default']
-    Home: typeof import('./src/components/Home/Home.vue')['default']
+    Home: typeof import('./src/components/Home/index.vue')['default']
     Reactive: typeof import('./src/components/Reactive.vue')['default']
     Ref: typeof import('./src/components/Ref.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    School: typeof import('./src/components/School/index.vue')['default']
     Son: typeof import('./src/components/FatherAndGrandSon/Son.vue')['default']
+    Student: typeof import('./src/components/Student/index.vue')['default']
     VirturalList: typeof import('./src/components/VirtualList/VirturalList.vue')['default']
   }
 }

@@ -2,7 +2,17 @@ import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } 
 
 // 路由数组类型为RouteRecordRaw
 const routes: Array<RouteRecordRaw> = [
-   
+    {
+        path: '/',
+        redirect: '/school'
+    },
+    {
+        path: '/home',
+        component: () => import('../components/Home/index.vue')
+    }, {
+        path: '/school',
+        component: () => import('../pages/school/index.vue')
+    }
 ]
 
 const router = createRouter({
