@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const obj = {
+                value: 10,
+                getValue: function () {
+                    console.log(this.value)
+                },
+                arrowGetValue: () => {
+                    console.log(this.value)
+                },
+            }
+
+            obj.getValue()
+
+            const getValueFunc = obj.getValue
+            getValueFunc()
+
+            obj.arrowGetValue()
+
+            const arrowGetValueFunc = obj.arrowGetValue
+            arrowGetValueFunc()
+            function Animal(name) {
+                this.name = name
+            }
+
+            Animal.prototype.getName = function () {
+                return this.name
+            }
+
+            function Dog(name, breed) {
+                Animal.call(this, name)
+                this.breed = breed
+            }
+
+            Dog.prototype = Object.create(Animal.prototype)
+            Dog.prototype.constructor = Dog
+
+            Dog.prototype.getBreed = function () {
+                return this.breed
+            }
+
+            const dog1 = new Dog('Buddy', 'Golden Retriever')
+
+            console.log(dog1.getName()) // 输出1
+            console.log(dog1.getBreed()) // 输出2
+
+            const logName = dog1.getName
+            console.log(logName()) // 输出3
+
+            const logBreed = dog1.getBreed.bind(dog1)
+            console.log(logBreed()) // 输出4
+
+//             假设有一个父盒子（.div)，包含了三个子元素分别为小蓝（.blue)，小红（.red），小黄（.yellow）
+// 要求：
+// 请使用flex实现以下布局：
+// 小蓝小红小黄默认每人分配100px；
+// 当分完还有多余的空间时，小红和小黄按2:1的比例再去分掉多余的空间，小蓝固定不动；
+// 当空间不够分的情况下，小红和小黄按2:1的比例去缩小自己，小蓝还是固定不动。
+        </script>
+    </body>
+</html>

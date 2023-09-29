@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // function getStr(str){
+            //     return str.split('').reduce((a, b) => (a[b]++ || 1, a), {})
+            // }
+            // const res = getStr('abc')
+            // console.log(res);
+            // const { name: addr, age: w, username: user = 'handashi' } = { name: 'paul', age: 23 }
+            // console.log(addr, w, user)
+            function sumAfterOperations(n, operations) {
+                // 初始化一个 n * n 的矩阵，所有元素初始为 0
+                const matrix = Array.from({ length: n }, () => Array(n).fill(0))
+
+                // 遍历操作数组
+                for (const [type, index, val] of operations) {
+                    if (type === 0) {
+                        // 修改第 index 行所有元素为 val
+                        matrix[index].fill(val)
+                    } else if (type === 1) {
+                        // 修改第 index 列所有元素为 val
+                        for (let i = 0; i < n; i++) {
+                            matrix[i][index] = val
+                        }
+                    }
+                }
+
+                // 计算矩阵所有元素之和
+                let sum = 0
+                for (let i = 0; i < n; i++) {
+                    for (let j = 0; j < n; j++) {
+                        sum += matrix[i][j]
+                    }
+                }
+
+                return sum
+            }
+
+            // 示例使用
+            const n = 3
+            const operations = [
+                [0, 0, 1],
+                [1, 2, 2],
+                [0, 2, 3],
+                [1, 0, 4],
+            ]
+
+            const result = sumAfterOperations(n, operations)
+            console.log(result) // 输出：23
+            function minFlips(s) {
+                let flips = 0
+                let flips1 = 0
+                let flips2 = 0
+
+                // 计算以0开头的情况需要翻转的次数
+                for (let i = 0; i < s.length; i++) {
+                    if (i % 2 === 0) {
+                        if (s[i] !== '0') {
+                            flips1++
+                        }
+                    } else {
+                        if (s[i] !== '1') {
+                            flips1++
+                        }
+                    }
+                }
+
+                // 计算以1开头的情况需要翻转的次数
+                for (let i = 0; i < s.length; i++) {
+                    if (i % 2 === 0) {
+                        if (s[i] !== '1') {
+                            flips2++
+                        }
+                    } else {
+                        if (s[i] !== '0') {
+                            flips2++
+                        }
+                    }
+                }
+
+                flips = Math.min(flips1, flips2)
+
+                return flips
+            }
+
+            // 示例使用
+            // const s1 = '0011'
+            // const s2 = '010101'
+
+            // const result1 = minFlips(s1) // 输出：2
+            // const result2 = minFlips(s2) // 输出：2
+
+            // console.log(result1)
+            // console.log(result2)
+
+
+            
+        </script>
+    </body>
+</html>

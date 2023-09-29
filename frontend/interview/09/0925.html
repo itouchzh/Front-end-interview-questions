@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style lang="">
+            .box {
+                display: inline-block;
+                width: 200px;
+                height: 200px;
+                border: 1px solid red;
+                padding: 10px;
+                background-color: yellow;
+                clear: both;
+            }
+            .box1 {
+                box-sizing: border-box;
+            }
+            .box2 {
+                box-sizing: content-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <script>
+            console.log(1);
+            setTimeout(()=>{
+                console.log(2);
+            })
+            Promise.resolve().then(() => {
+                console.log(3);
+                setTimeout(() => {
+                    console.log(4);
+                })
+            })
+
+            // Promise.resolve().then(() => {
+            //     console.log(5);
+            // })
+            // console.log(6);
+            // 请分析以下js代码的性能问题，并提供相应的解决方案（请至少列出4条解决方案）
+            // function fibonacci(n){
+            //     if(n <=1 ){
+            //         return n
+            //     }else{
+            //         return fibonacci(n-1) + fibonacci(n-2)
+            //     }
+            // }
+            // console.time('fibonacci');
+            // const res = fibonacci(40)
+//             // console.timeEnd('fibonacci')
+// 请使用JavaScript实现一个函数batchUpdateDOM(elements,attributes),
+// 该函数接收两个参数：一个包含DOM元素的数组elements和一个属性对像attributes.
+// 函数需要批量更新elements中每个元素的属性，以提高性能.
+// 要求：
+// 1.使用requestAnimationFrame来批量更新DOM元素避免引起不必要的重排和重绘.
+// 2.函数应当具有错误处理机制，确保在传入无效参数时不会导致程序崩溃
+
+// 请使用Javascript实现一个简单的股票报价通如系统，你需要创建一个名为StockMarket的类，该类应具有以下功能：
+// 1.register(stockSymbol,callback):允许用户注册特定股票的报价更新，当股票报价发生变化a时，将调用相应的回调函数
+// 2 unregister(stockSymbol,callback):允许用户取消背注册特定股票的报价更新。取消注册后，股票报价发生变化时不再调用相应的回
+// 调函数
+// 3.notify(stockSymbol,newPrice:允许系统通知所有注册了特定股票报价更新的用户。
+// 示例：
+// const stockMarket=new StockMarket();
+// function priceUpdateCallback(stockSymbol,newPrice){
+// console.log(`Received update for $${stockSymbol}:${newPrice}`);
+// }
+// ∥注册股票报的更新
+// stockMarketregister('AAPL',priceUpdateCallback);
+// 通知股票报价更新
+// stockMarket.notify('AAPL',150);
+// ∥取注册酸票报价更新
+// stockMarketunregister('AAPL',priceUpdateCallback)
+// ∥再次通股票报价更新
+// stockMarketnotify('AAPL',155);
+// ∥无输出，因为己取注册
+
+
+
+
+
+        </script>
+    </body>
+</html>
