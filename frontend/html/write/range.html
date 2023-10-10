@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 写range 函数 左闭右闭
+            function range(start, end) {
+                if (start < end) {
+                    let ans = []
+                    for (let i = start; i <= end; i++) {
+                        ans.push(i)
+                    }
+                    return ans
+                }
+                if (end === undefined) {
+                    const innerStart = start
+                    return function (end) {
+                        if (end < innerStart) {
+                            return []
+                        } else {
+                            let ans = []
+                            for (let i = innerStart; i <= end; i++) {
+                                ans.push(i)
+                            }
+                            return ans
+                        }
+                    }
+                }
+                return []
+            }
+            const a = range(3)
+            const b = a(8)
+            console.log(b);
+        </script>
+    </body>
+</html>

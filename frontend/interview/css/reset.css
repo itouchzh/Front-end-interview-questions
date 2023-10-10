@@ -1,0 +1,59 @@
+/* reset.css */
+
+/* 基本的重置 */
+body,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+dl,
+dd,
+ol,
+ul,
+hr,
+fieldset,
+legend,
+button,
+input,
+select,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+
+/* 列表样式重置 */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 链接样式重置 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 表单元素样式重置 */
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+}
+
+/* 其他样式重置 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}

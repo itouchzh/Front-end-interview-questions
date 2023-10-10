@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <!-- <script src="./index.js"></script> -->
+    </head>
+    <body>
+        <div id="div1">
+            <div id="div2">click me!</div>
+        </div>
+        <script>
+            // f = function () {
+            //     return true
+            // }
+            // g = function () {
+            //     return false
+            // }
+
+            // console.log(f())
+            // console.log(g())
+            const div2 = document.getElementById('div2')
+            const div1 = document.getElementById('div1')
+            div1.addEventListener(
+                'click',
+                function (e) {
+                    console.log('1')
+                },
+                true
+            )
+            div2.addEventListener('click', function (e) {
+                console.log('2')
+            })
+            div1.addEventListener(
+                'click',
+                function (e) {
+                    console.log('3')
+                },
+                false
+            )
+            div2.addEventListener(
+                'click',
+                function (e) {
+                    console.log('4')
+                },
+                true
+            )
+            // const div1 = document.querySelector('.div1')
+            // const div2 = document.querySelector('.div2')
+            // div1.addEventListener('click', () => {
+            //     console.log(1)
+            // })
+            // div1.addEventListener(
+            //     'click',
+            //     () => {
+            //         console.log(2)
+            //     },
+            //     true
+            // )
+            // div2.addEventListener('click', () => {
+            //     console.log(3)
+            // })
+
+            // var ctx = {_val :30}
+            // var _val = 10
+            // function rootFn(){
+            //     console.log(this._val);
+            //     this._val = 20
+            //     function childFn(){
+            //         console.log(this._val);
+            //     }
+            //     return childFn
+            // }
+            // rootFn.apply(ctx)()
+            // console.log(ctx._val);
+
+            // Object.prototype.foo= 1
+            // Function.prototype.bar = 2
+            // const F = function(){}
+            // const f = new F()
+            // console.log(f.foo, f.bar, F.foo,F.bar);
+
+            // function A(){}
+            // A.prototype.n = 0
+            // A.prototype.add = function(){
+            //     this.n += 1
+            // }
+            // const a1 = new A()
+            // const a2 = new A()
+            // a1.add()
+            // a1.add()
+            // a2.add()
+            // console.log(a1.n, a2.n);
+        </script>
+    </body>
+</html>
