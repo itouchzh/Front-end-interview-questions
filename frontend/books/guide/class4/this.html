@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            var x = 3,
+                obj = { x: 5 }
+            obj.fn = (function () {
+                this.x *= ++x
+                console.log(1);
+                return function (y) {
+                    this.x *= ++x + y
+                    console.log(x)
+                }
+            })()
+            var fn = obj.fn
+            obj.fn(6)
+            fn(4)
+            console.log(obj.x, x)
+        </script>
+    </body>
+</html>

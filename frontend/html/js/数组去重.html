@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const arr = [1, 2, 3, 3, 4, 4, 4, 5, 5, 5]
+            // 使用set来去重
+            const res1 = [...new Set(arr)]
+            console.log(res1)
+            // 使用filter来去重
+            const res2 = arr.filter((item, index) => arr.indexOf(item) === index)
+            console.log(res2)
+            // 使用reduce来去重
+            const res3 = arr.reduce((prev, cur) => {
+                if (!prev.includes(cur)) {
+                    prev.push(cur)
+                }
+                return prev
+            }, [])
+            console.log(res3)
+
+            // 使用map
+            const method4 = Array.from(new Map(arr.map((item) => [item, item])).values())
+            console.log(method4)
+        </script>
+    </body>
+</html>

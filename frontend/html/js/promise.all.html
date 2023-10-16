@@ -81,7 +81,27 @@
                         .catch((reason) => reject(reason))
                 }
             }
-            
+
+            const promiseAll = function (functions) {
+                return new Promise((resolve, reject) => {
+                    // const arr = Array.from(functions)
+                    let results = [],
+                        count = 0
+                    functions.forEach((item, index) => {
+                        item()
+                            .then((res) => {
+                                results[index] = res
+                                if (++count === functions.length) {
+                                    resolve(results)
+                                }
+                            })
+                            .catch((err) => {
+                                reject(err)
+                            })
+                    })
+                })
+            }
+
             const map = new Map()
             map.set('name', 'paul')
             map.set('age', 23)

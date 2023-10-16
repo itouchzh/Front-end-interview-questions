@@ -42,6 +42,7 @@
             function myNew(Fn, ...args) {
                 let newObj = Object.create(Fn.prototype)
                 let res = Fn.apply(newObj, args)
+                console.log(res)
                 return typeof res == 'object' ? res : newObj
             }
         </script>
