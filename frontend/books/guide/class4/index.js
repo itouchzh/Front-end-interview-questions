@@ -62,9 +62,11 @@ const obj = {
 // console.log(arr1)
 // let a = new Array(4, 5, 6, 6, 7)
 // console.log(a)
-let a = [1, 2, 3, 4, 5]
-let b = Array.from(a, (value, key) => {
-    console.log(value, key)
-    return key + value
-})
-console.log(b);
+// let a = [1, 2, 3, 4, 5]
+// let b = Array.from(a, (value, key) => {
+//     console.log(value, key)
+//     return key + value
+// })
+// console.log(b);
+
+

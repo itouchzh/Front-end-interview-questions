@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // for (let i = 0; i < 10; i++) {
+            //     setTimeout(async () => {
+            //         console.log(await Promise.resolve(i))
+            //     }, i * 1000)
+            // }
+            // for (let i = 0; i < 10; i++) {
+            //     setTimeout(() => {
+            //         console.log(i)
+            //     }, i * 1000)
+            // }
+            // for (var i = 0; i < 10; i++) {
+            //     delay(i * 1000, i).then((res) => {
+            //         console.log(res)
+            //     })
+            // }
+            // function delay(time, value) {
+            //     return new Promise((resolve, reject) => {
+            //         setTimeout(() => {
+            //             resolve(value)
+            //         }, time)
+            //     })
+            // }
+            function curry(func) {
+                return function curried(...args) {
+                    if (args.length >= func.length) {
+                        return func.apply(this, args)
+                    } else {
+                        return function (...args2) {
+                            return curried.apply(this, args.concat(args2))
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

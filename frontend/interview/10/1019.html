@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <div class="father">
+                <button>点我</button>
+            </div>
+        </div>
+        <script>
+            const btn = document.querySelector('button')
+            btn.onclick = (e) => {
+                console.log(e.currentTarget, e.target)
+            }
+            document.querySelector('.father').addEventListener('click', (e) => {
+                console.log(e.currentTarget, e.target)
+            })
+
+            function throttle(fn, delay) {
+                let timer = null
+                return function () {
+                    if (!timer) {
+                        timer = setTimeout(() => {
+                            fn.apply(this, arguments)
+                            timer = null
+                        }, delay)
+                    }
+                }
+            }
+
+            var name = 'outer'
+            function k() {
+                let name = 'k'
+                let innerObj = {
+                    print: function () {
+                        console.log(name)
+                        console.log(this.name)
+                    },
+                }
+                return innerObj
+            }
+            let o = k()
+            o.print() // this 指向innerObj对象
+            let p = o.print
+            p()
+            const arr = [1, 2, 3, 4, 5]
+        </script>
+    </body>
+</html>
