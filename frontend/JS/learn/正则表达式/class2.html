@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <main>
+            <span>Hello World</span>
+            <span>Hello World</span>
+            <span>Hello World</span>
+            <span class="get">get</span>
+        </main>
+        <script>
+            // span换成h1标签
+            const main = document.querySelector('main')
+            const reg = /<span\sclass="get">([\s\S]+?)<\/span>/g
+            console.log(main.innerHTML.match(reg))
+            main.innerHTML = main.innerHTML.replace(reg, (v, p1) => {
+                return `<h1 style="color:red">12333-----${p1}</h1>`
+            })
+
+            // String.prototype.matchAll = function (reg) {
+            //     let res = this.match(reg)
+            //     if (res) {
+            //         let str = this.replace(res[0], '^'.repeat(res[0].length))
+            //         let match = str.matchAll(reg) || []
+            //         return [res, ...match]
+            //     }
+            // }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            html {
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            table {
+                width: 100%;
+                font-size: 1.5rem;
+                border-spacing: 10px;
+            }
+            th,
+            td {
+                border: 4px solid #e6e6e6;
+                padding: 20px;
+                transition: all 0.3s;
+            }
+            th {
+                text-align: left;
+                cursor: pointer;
+            }
+            th:hover {
+                background-color: e6e6e6;
+            }
+            th.over {
+                border: 4px dashed #bbb;
+            }
+            th.dragged {
+                opacity: 0.5;
+            }
+            [data-id='col1'] {
+                background-color: #fff2e8;
+                color: #d4380d;
+            }
+            [data-id='col2'] {
+                background-color: #f6ffed;
+                color: #389e0d;
+            }
+            [data-id='col3'] {
+                background-color: #f0f5ff;
+                color: #1d39c4;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="my-table">
+            <thead>
+                <tr class="headers">
+                    <th draggable="true" data-id="col1">colums1</th>
+                    <th draggable="true" data-id="col2">colums2</th>
+                    <th draggable="true" data-id="col3">colums3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-id="col1">Row1, Column1</td>
+                    <td data-id="col2">Row1, Column2</td>
+                    <td data-id="col3">Row1, Column3</td>
+                </tr>
+                <tr>
+                    <td data-id="col1">Row2, Column1</td>
+                    <td data-id="col2">Row2, Column2</td>
+                    <td data-id="col3">Row2, Column3</td>
+                </tr>
+                <tr>
+                    <td data-id="col1">Row3, Column1</td>
+                    <td data-id="col2">Row3, Column2</td>
+                    <td data-id="col3">Row3, Column3</td>
+                </tr>
+            </tbody>
+        </table>
+        <script>
+            const table = document.getElementById('my-table')
+            let order = ['col1', 'col2', 'col3']
+            let draggedHeader = null
+            function sortColumns() {
+                const trs = table.querySelectorAll('tr')
+                console.log(trs);
+                for (const tr of trs) {
+                    const columns = []
+                    for (const id of order) {
+                        columns.push(tr.querySelector(`[data-id=${id}]`))
+                    }
+                    console.log(columns);
+                    tr.innerHTML = ''
+                    for (const column of columns) {
+                        tr.appendChild(column)
+                    }
+                }
+            }
+            function handleDragStart(e) {
+                draggedHeader = this
+                console.log(e)
+                e.dataTransfer.effectAllowed = 'move'
+                this.classList.add('dragged')
+            }
+            function handleDragEnter() {
+                this.classList.add('over')
+            }
+            function handleDragOver(e) {
+                e.preventDefault()
+                e.dataTransfer.dropEffect = 'move'
+                return false
+            }
+            function handleDragLeave(e) {
+                this.classList.remove('over')
+            }
+            function handleDragEnd() {
+                this.classList.remove('dragged')
+            }
+            function handleDrop(e) {
+                const dropTarget = this
+                dropTarget.classList.remove('over')
+                if (draggedHeader !== dropTarget) {
+                    const draggedHeaderCurrentIndex = order.indexOf(draggedHeader.dataset.id)
+                    const dropTargetCurrentIndex = order.indexOf(dropTarget.dataset.id)
+                    // console.log(order.splice(draggedHeaderCurrentIndex, 1));
+                    const [removedColumn] = order.splice(draggedHeaderCurrentIndex, 1)
+                    order.splice(dropTargetCurrentIndex, 0, removedColumn)
+                    sortColumns()
+                }
+            }
+
+            function listenEvents() {
+                const ths = table.querySelectorAll('th')
+                for (const th of ths) {
+                    th.addEventListener('dragstart', handleDragStart)
+                    th.addEventListener('dragenter', handleDragEnter)
+                    th.addEventListener('dragover', handleDragOver)
+                    th.addEventListener('dragleave', handleDragLeave)
+                    th.addEventListener('dragend', handleDragEnd)
+                    th.addEventListener('drop', handleDrop)
+                }
+            }
+            listenEvents()
+        </script>
+    </body>
+</html>

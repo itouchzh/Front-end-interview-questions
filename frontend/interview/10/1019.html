@@ -44,10 +44,28 @@
                 return innerObj
             }
             let o = k()
-            o.print() // this 指向innerObj对象
+            o.print()
             let p = o.print
             p()
             const arr = [1, 2, 3, 4, 5]
+
+            // 防抖 debounce
+            function debounce(fn, delay) {
+                let timer = null
+                return function () {
+                    if (timer) {
+                        clearTimeout(timer)
+                    }
+                    timer = setTimeout(() => {
+                        fn.call(this)
+                    }, delay)
+                }
+            }
+            function test() {
+                console.log(1)
+            }
+
+            debounce(test, 2000)()
         </script>
     </body>
 </html>

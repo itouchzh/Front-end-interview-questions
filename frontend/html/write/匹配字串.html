@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //按要求实现一个函数，在给定字符串中搜索了字符串并返回其个数函数的构造形式如下:
+            // solution(fullText, sesarchText,allowOverlap)
+
+            // const solution = (fullText, sesarchText,allowOverlap) => {
+            //     if(sesarchText === '') return 0
+            //     let res = 0
+            //     let arr= fullText.split("")
+            //     let s_length = sesarchText.length;
+            //     let temp =""
+            //     for(let i = 0; i < arr.length - s_length; i++){
+            //         temp = arr.slice(i, i + s_length).join("")
+            //         if(temp === sesarchText) res++
+            //         if(!allowOverlap){
+            //             arr.splice(i, s_length, '*')
+            //         }
+            //     }
+            //     return res
+            // }
+            const solution = (fullText, sesarchText, allowOverlap) => {
+                let index = fullText.indexOf(sesarchText)
+                let res = 0
+                while (index !== -1) {
+                    res++
+                    if (allowOverlap) {
+                        index = fullText.indexOf(sesarchText, index + 1)
+                    } else {
+                        index = fullText.indexOf(sesarchText, index + sesarchText.length)
+                    }
+                }
+                return res
+            }
+
+            const res = solution('aaa_aa', 'aa', false)
+            console.log(res)
+        </script>
+    </body>
+</html>

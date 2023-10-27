@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="box">我输入的东西进行高亮</div>
+        <h1>Hello world</h1>
+        <div>Hello world</div>
+        <script>
+            // 通过正则表达式高亮文本
+            // const content = prompt('请输入')
+            // const reg = new RegExp(content, 'g')
+            // let body = document.querySelector('#box').innerHTML.replace(reg, (str) => {
+            //     return `<span style="color:red">${str}</span>`
+            // })
+            // document.body.innerHTML = body
+
+            // 通过正则表达式提取标签
+            // function element(tag) {
+            //     const html = document.body.innerHTML
+            //     let reg = new RegExp('<(' + tag + ')>.+</\\1>', 'g')
+
+            //     return html.match(reg)
+            // }
+            // console.log(element('div'))
+
+            // 匹配邮箱 w:字母数字和下划线
+            // let email = '1512222@163.com'
+            // console.log(email.match(/^\w+@\w+\.\w+$/));
+            // W: 除了字母数字和下划线   . 可以匹配除了换行符的所有字符
+            // 匹配所有字符： [\s\S] [\d\D]
+            // 模式修正符  i 忽略大小写 g全局匹配 m每一行单独处理
+
+            // let course = `
+            //     #1 js,200元  #
+            //     #2 php,300元  #
+            //     #9 xxx.com # 吃饭
+            // `
+            // 需要得到 [{name: xxx, price:'200元'}]
+            // const lessons = course.match(/^\s*#\d+\s+.+\s+#$/gm).map((v) => {
+            //     v = v.replace(/\s*#\d+\s*/, '').replace(/\s+#/, '')
+            //     ;[name, price] = v.split(',')
+            //     return { name, price }
+            // })
+            // console.log(lessons)
+
+            // 匹配特殊字符 \p{} u
+
+            // 提取域名, 括号中的?:表示不记录到组编号里面
+            // let domains = `
+            // https://baidu.com
+            // http://www.baidu.com
+            // https://jd.com
+            // `
+
+            // let reg = /https?:\/\/((?:\w+\.)+(?:com|cn|org))/gi
+            // let paths = []
+            // while ((res = reg.exec(domains))) {
+            //     paths.push(res[1])
+            // }
+            // console.log(paths) // (3) ['baidu.com', 'www.baidu.com', 'jd.com']
+
+
+            
+        </script>
+    </body>
+</html>

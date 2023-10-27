@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const map = new Map()
+            map.set(1, 1)
+            map.set(2, 20)
+            map.set(3, 3)
+            map.set(4, 0)
+            map.set(5, 120)
+            for (const [key, value] of map) {
+                console.log(key, value)
+            }
+
+            let sortedArray = Array.from(map)
+            console.log(sortedArray)
+            sortedArray.sort((a, b) => a[1] - b[1])
+            const res = new Map(sortedArray)
+            console.log(res)
+
+            function deepClone(obj) {
+                const newObj = Array.isArray(obj) ? [] : {}
+                for (let o in obj) {
+                    if (typeof obj[o] === 'object' && obj[o] !== null) {
+                        newObj[o] = deepClone(obj[o])
+                    } else {
+                        newObj[o] = deepClone(obj[o])
+                    }
+                }
+                return newObj
+            }
+        </script>
+    </body>
+</html>
