@@ -26,18 +26,30 @@
                 },
             ]
 
-            function work(deadline){
-                console.log(deadline.timeRemaining());
-                if(deadline.timeRemaining() > 0 && tasks.length){
+            function work(deadline) {
+                console.log(deadline)
+                console.log(deadline.timeRemaining())
+                if (deadline.timeRemaining() > 0 && tasks.length) {
                     const task = tasks.shift()
                     task()
                 }
-                if(tasks.length > 0){
+                if (tasks.length > 0) {
                     requestIdleCallback(work)
                 }
             }
 
             requestIdleCallback(work)
+            // 模拟requestIdleCallback
+            function simulateRequestIdleCallback(callback) {
+                const start = Date.now()
+                setTimeout(() => {
+                    callback({
+                        didTimeout: false,
+                        timeRemaining: () => Math.max(0, 50 - (Date.now() - start)),
+                    })
+                }, 0)
+            }
+            
         </script>
     </body>
 </html>

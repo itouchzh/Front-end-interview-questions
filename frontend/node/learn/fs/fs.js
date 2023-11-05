@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 
-// 异步写入
+// 同步写入
 
 fs.writeFileSync('./a.txt', 'Hello World', (err) => {
     if (err) {
