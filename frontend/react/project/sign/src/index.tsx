@@ -1,15 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import 'reset-css'
-import '@/assets/styles/global.scss'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-
+import ThemeContextProvider from './context/theme-context'
+import TasksContextProvider from './context/tasks-context'
+import './App.css'
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <App />
+            <ThemeContextProvider>
+                <TasksContextProvider>
+                    <App />
+                </TasksContextProvider>
+            </ThemeContextProvider>
         </BrowserRouter>
     </React.StrictMode>
 )

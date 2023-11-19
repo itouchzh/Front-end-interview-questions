@@ -2,7 +2,7 @@ import React from 'react'
 import routes from './router'
 import { useRoutes } from 'react-router'
 import { Link } from 'react-router-dom'
-import './App.scss'
+
 function App() {
     const outlet = useRoutes(routes)
     return (

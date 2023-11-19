@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 下划线转驼峰
+            function toCamelCase(str) {
+                return str.replace(/_([a-z])/g, (_, letter) => {
+                    console.log(_, letter)
+                    return letter.toUpperCase()
+                })
+            }
+            let inputString = 'this_is_an_abc'
+            let camelCaseString = toCamelCase(inputString)
+            console.log(camelCaseString)
+
+            // 驼峰转下划线
+            function toSnakeCase(str) {
+                return str.replace(/([A-Z])/g, (_, letter) => '_' + letter.toLowerCase())
+            }
+            // function toSnakeCase(str) {
+            //     return str
+            //         .replace(/^([A-Z])/, (_, letter) => letter.toLowerCase())
+            //         .replace(/([A-Z])/g, (_, letter) => '_' + letter.toLowerCase())
+            // }
+            let camel = 'helloWorld'
+            let snakeCaseString = toSnakeCase(camel)
+            console.log(snakeCaseString)
+        </script>
+    </body>
+</html>

@@ -33,14 +33,13 @@
             // // 寄生组合式继承
             // function Parent(){
             //     this.name = 'Parent'
-                
+
             // }
             // Parent.prototype.sayName = function(){
             //     console.log("This is sayName()")
             // }
             // function Son(){
             //     Parent.call(this)
-            //     this.type = 'Son'
             // }
             // // 将Son的原型指向Parent
             // Son.prototype = Object.create(Parent.prototype)
@@ -49,7 +48,6 @@
             // let son = new Son()
             // son.sayName()
             // console.log(son.name)
-            
 
             //  1. 原型链继承
             //  2. 盗用构造函数继承
@@ -57,9 +55,116 @@
             // 4. 原型式继承
             // 5. 寄生式继承
             // 6. 寄生组合式继承
+
+            // function Parent() {
+            //     console.log('Parent')
+            // }
+
+            // Parent.prototype.sayName = function () {
+            //     console.log('This is sayName()')
+            // }
+
+            // const son = new Parent()
+            // console.log(son.constructor)
+
+            // 1. 原型链继承
+            // function Parent() {
+            //     console.log('Parent')
+            // }
+            // Parent.prototype.sayHello = function () {
+            //     console.log('This is sayHello()')
+            // }
+            // function Child(){}
+            // Child.prototype = new Parent()
+            // const child = new Child()
+            // child.sayHello()
+
+            // 2. 借用构造函数继承
+            // function Parent(name) {
+            //     console.log(name);
+            //     console.log('Parent')
+            // }
+            // Parent.prototype.sayHello = function () {
+            //     console.log('This is sayHello()')
+            // }
+            // function Child(name) {
+            //     Parent.call(this, name)
+            // }
+            // const child = new Child("paul")
+            // child.sayHello() 
+
+            // // 3. 组合继承
+            // function Parent(name) {
+            //     console.log(name);
+            //     console.log('Parent')
+            // }
+            // Parent.prototype.sayHello = function () {
+            //     console.log('This is sayHello()')
+            // }
+            // function Child(name) {
+            //     Parent.call(this, name)
+            // }
+            // Child.prototype = new Parent()
+            // const child = new Child("paul")
+            // child.sayHello()
+
+            // 4. 原型式继承
+            // function object(o){
+            //     function Father(){}
+            //     Father.prototype = o
+            //     return new Father()
+            // }
+            // const obj = {
+            //     name:'paul',
+            //     sayHello(){
+            //         console.log('This is sayHello()');
+            //     }
+            // }
+            // const child = object(obj)
+            // child.sayHello()
+            // console.log(child.name);
+
+            // 5寄生式继承
+            // function object(o) {
+            //     function Father() {}
+            //     Father.prototype = o
+            //     return new Father()
+            // }
+            // function createObj (obj){
+            //     const clone = object(obj)
+            //     clone.sayName = function(){
+            //         console.log('This is sayName()')
+            //     }
+            //     return clone
+            // }
+            // const obj = {
+            //     name:'paul',
+            //     sayHello(){
+            //         console.log('This is sayHello()');
+            //     }
+            // }
+            // const child = createObj(obj)
+            // child.sayHello()
+            // child.sayName()
             
 
+            // 6. 寄生组合式继承
+           
+            function Father(name){
+                this.name = name
+                console.log(name);
+            }
+            Father.prototype.sayHello = function(){
+                console.log('This is sayHello()')
+            }
 
+            function Child(name){
+                Father.call(this,name)
+            }
+
+            Child.prototype = Object.create(Father.prototype)
+            const child = new Child('paul')
+            child.sayHello()
         </script>
     </body>
 </html>

@@ -1,9 +1,9 @@
-function Detection() {
+import React from 'react'
+import FormDesign from '@/components/FormDesign'
+export default function FormDesignPage() {
     return (
         <>
-            <h1>Hello Detection</h1>
+            <FormDesign />
         </>
     )
 }
-
-export default Detection

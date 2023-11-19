@@ -33,8 +33,8 @@ const items: MenuItem[] = [
     getItem('用户管理', '/home/user', <PieChartOutlined />),
     getItem('班级管理', '/home/classes', <DesktopOutlined />),
     getItem('车辆管理', '/cars', <UserOutlined />, [
-        getItem('Tom', '/home/detection'),
-        getItem('Bill', '/home/results'),
+        getItem('表单设计器', '/home/detection'),
+        getItem('故障收集', '/home/results'),
         // getItem('Alex', 'detection'),
     ]),
     getItem('地点管理', 'sub2', <UserOutlined />, [
@@ -50,18 +50,27 @@ const Home: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false)
 
     // 初始展开
-    let firstOpenKey: string = ''
+    let firstOpenKey: string | undefined = ''
     const findKey = (obj: { key: string }) => {
         return obj.key === location.pathname
     }
+    // for (let i = 0; i < items.length; i++) {
+    //     if (items[i]!['children'] && items[i]!['children'].find(findKey)) {
+    //         // console.log(items[i]!['children'])
+    //         firstOpenKey = items[i]?.key as string
+    //     }
+    // }
     for (let i = 0; i < items.length; i++) {
-        if (items[i]!['children'] && items[i]!['children'].find(findKey)) {
-            // console.log(items[i]!['children'])
-            firstOpenKey = items[i]?.key as string
+        const children = (items[i] as { children?: any })?.children
+
+        if (children && children.find(findKey)) {
+            // 如果找到满足条件的元素，设置 firstOpenKey
+            firstOpenKey = (items[i] as { key?: string })?.key
+            break
         }
     }
     // 当前菜单展开项
-    const [openKeys, setOpenKeys] = useState<string[]>([firstOpenKey])
+    const [openKeys, setOpenKeys] = useState<string[]>([firstOpenKey!])
     const navigate = useNavigate()
     const {
         token: { colorBgContainer },
@@ -79,8 +88,18 @@ const Home: React.FC = () => {
 
     return (
         <Layout style={{ minHeight: '100vh' }}>
-            <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div style={{ height: 32, margin: 16, background: 'rgba(255, 255, 255, 0.2)' }} />
+            <Sider
+                collapsible
+                collapsed={collapsed}
+                onCollapse={(value) => setCollapsed(value)}
+            >
+                <div
+                    style={{
+                        height: 32,
+                        margin: 16,
+                        background: 'rgba(255, 255, 255, 0.2)',
+                    }}
+                />
                 <Menu
                     theme="dark"
                     defaultSelectedKeys={[location.pathname]}
@@ -109,7 +128,13 @@ const Home: React.FC = () => {
                             },
                         ]}
                     ></Breadcrumb>
-                    <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
+                    <div
+                        style={{
+                            padding: 24,
+                            minHeight: 360,
+                            background: colorBgContainer,
+                        }}
+                    >
                         <Outlet />
                     </div>
                 </Content>

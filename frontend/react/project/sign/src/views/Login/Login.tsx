@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { LockOutlined, UserOutlined, KeyOutlined } from '@ant-design/icons'
 import { Button, Checkbox, Form, Input } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import initLoginBg from './init'
+// import initLoginBg from './init'
 import './login.scss'
 const Login: React.FC = () => {
     const navigate = useNavigate()
@@ -14,12 +14,12 @@ const Login: React.FC = () => {
         console.log('Received values of form: ', values)
     }
 
-    useEffect(() => {
-        initLoginBg()
-        window.onresize = function () {
-            initLoginBg()
-        }
-    })
+    // useEffect(() => {
+    //     initLoginBg()
+    //     window.onresize = function () {
+    //         initLoginBg()
+    //     }
+    // })
 
     return (
         <div className="login-main">
