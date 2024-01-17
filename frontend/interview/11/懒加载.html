@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lazy Loading with Vue</title>
+        <style>
+            .content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+            img {
+                width: 100vh;
+                height: 100vh;
+                display: block;
+                box-sizing: border-box;
+                padding: 100px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- 使用 v-for 渲染图片 -->
+            <div ref="imgRef" class="content">
+                <img v-for="(item, index) in content" :src="defaultUrl" :key="index" :data-src="item.src" />
+            </div>
+        </div>
+
+        <script src="https://static.nowcoder.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+
+                data() {
+                    return {
+                        content: [
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img1.jpg', num: '45002' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img2.jpg', num: '368724' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img3.jpg', num: '96487' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img4.jpg', num: '96487' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img5.jpg', num: '96487' },
+                            // 添加其他图片数据
+                        ],
+                        defaultUrl: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/loading.jpg',
+                    }
+                },
+                mounted() {
+                    this.throttledLazyLoad()
+                    window.addEventListener('scroll', this.throttledLazyLoad)
+                },
+                beforeDestroy() {
+                    window.removeEventListener('scroll', this.throttledLazyLoad)
+                },
+                methods: {
+                    throttle(fn, delay = 1000) {
+                        let timer = null
+                        return function (...args) {
+                            if (timer) {
+                                return
+                            }
+                            timer = setTimeout(() => {
+                                fn.apply(this, args)
+                                timer = null
+                            }, delay)
+                        }
+                    },
+                    lazyLoad() {
+                        // 实现懒加载逻辑
+                        const images = Array.from(this.$refs.imgRef.children)
+                        images.forEach((img, index) => {
+                            // 判断元素是否在视口内
+                            const observer = new IntersectionObserver(
+                                ([entry]) => {
+                                    if (entry.isIntersecting) {
+                                        img.src = img.getAttribute('data-src')
+                                        observer.unobserve(img)
+                                    }
+                                },
+                                { threshold: 0.1 }
+                            )
+                            observer.observe(img)
+                        })
+                    },
+                },
+                computed: {
+                    throttledLazyLoad() {
+                        // 返回节流函数
+                        return this.throttle(this.lazyLoad)
+                    },
+                },
+            })
+        </script>
+    </body>
+</html>

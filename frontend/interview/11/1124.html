@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            rel="stylesheet"
+            href="http://unpkg.com/k-form-design/lib/k-form-design.css"
+        />
+    </head>
+
+    <body>
+        <div class="app">
+            <k-form-build
+                ref="KFB"
+                @submit="handleSubmit"
+                :value="jsonData"
+            ></k-form-build>
+            <button @click="getData">提交</button>
+        </div>
+        <script src="http://cdn.kcz66.com/vue.min.js"></script>
+        <script src="http://unpkg.com/k-form-design/lib/k-form-design.umd.min.js"></script>
+        <script>
+            let jsonData = {
+                list: [
+                    {
+                        type: 'input',
+                        label: '输入框',
+                        options: {
+                            type: 'text',
+                            width: '100%',
+                            defaultValue: '',
+                            placeholder: '请输入',
+                            clearable: false,
+                            maxLength: null,
+                            hidden: false,
+                            disabled: false,
+                        },
+                        model: 'input_1700818517994',
+                        key: 'input_1700818517994',
+                        rules: [{ required: false, message: '必填项' }],
+                        unique: false,
+                        is_inherited: false,
+                        is_auth: false,
+                        is_combine: false,
+                        combine_item: '',
+                    },
+                    {
+                        type: 'input',
+                        label: '输入框',
+                        options: {
+                            type: 'text',
+                            width: '100%',
+                            defaultValue: '',
+                            placeholder: '请输入',
+                            clearable: false,
+                            maxLength: null,
+                            hidden: false,
+                            disabled: false,
+                        },
+                        model: 'input_1700822067469',
+                        key: 'input_1700822067469',
+                        rules: [{ required: false, message: '必填项' }],
+                        unique: false,
+                        is_inherited: false,
+                        is_auth: false,
+                        is_combine: false,
+                        combine_item: '',
+                    },
+                    {
+                        type: 'time',
+                        label: '时间选择框',
+                        options: {
+                            width: '100%',
+                            defaultValue: '',
+                            disabled: false,
+                            hidden: false,
+                            clearable: false,
+                            placeholder: '请选择',
+                            format: 'HH:mm:ss',
+                        },
+                        model: 'time_1700822068837',
+                        key: 'time_1700822068837',
+                        rules: [{ required: false, message: '必填项' }],
+                        unique: false,
+                        is_inherited: false,
+                        is_auth: false,
+                        is_combine: false,
+                        combine_item: '',
+                    },
+                    {
+                        type: 'select',
+                        label: '下拉选择器',
+                        options: {
+                            width: '100%',
+                            multiple: false,
+                            disabled: false,
+                            clearable: false,
+                            hidden: false,
+                            placeholder: '请选择',
+                            dynamicKey: '',
+                            dynamicParam: '',
+                            dynamic: false,
+                            dynamicUrl: '',
+                            dynamicType: {},
+                            combineHandle: false,
+                            options: [
+                                { value: '1', label: '下拉框1' },
+                                { value: '2', label: '下拉框2' },
+                            ],
+                            showSearch: false,
+                        },
+                        model: 'select_1700822068108',
+                        key: 'select_1700822068108',
+                        rules: [{ required: false, message: '必填项' }],
+                        unique: false,
+                        is_inherited: false,
+                        is_auth: false,
+                        is_combine: false,
+                        combine_item: '',
+                    },
+                ],
+                config: {
+                    layout: 'horizontal',
+                    labelCol: { span: 4 },
+                    wrapperCol: { span: 18 },
+                    hideRequiredMark: false,
+                    customStyle: '',
+                },
+                desc: {
+                    input_1700818517994: {
+                        key: 'input_1700818517994',
+                        label: '输入框',
+                        type: 'input',
+                        default: '',
+                        required: false,
+                        unique: false,
+                        is_inherited: false,
+                        is_auth: false,
+                        method: 1,
+                    },
+                },
+            }
+            let vm = new Vue({
+                el: '.app',
+                data: {
+                    jsonData,
+                },
+                methods: {
+                    handleSubmit(p) {
+                        // 通过表单提交按钮触发，获取promise对象
+                        p()
+                            .then((res) => {
+                                // 获取数据成功
+                                alert(JSON.stringify(res))
+                            })
+                            .catch((err) => {
+                                console.log(err, '校验失败')
+                            })
+                    },
+                    getData() {
+                        // 通过函数获取数据
+                        this.$refs.KFB.getData()
+                            .then((res) => {
+                                // 获取数据成功
+                                alert(JSON.stringify(res))
+                            })
+                            .catch((err) => {
+                                console.log(err, '校验失败')
+                            })
+                    },
+                },
+            })
+        </script>
+    </body>
+</html>

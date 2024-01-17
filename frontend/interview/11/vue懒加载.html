@@ -1,0 +1,89 @@
+<!-- 根据列表数据封装一个图片懒加载的组件并引入使用
+1.进入页面在浏览器可视区范围内的图片会进行懒加载。
+2.向下滑动，当下面的图片进入窗口可视区范围内，开始加载。
+3.增加节流，节流时间为1s,防止滑动时频繁触发事件。
+4.当所有图片加载完毕时，移除滚动监听事件 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lazy Loading with Vue</title>
+        <style>
+            img {
+                height: 100vh;
+                display: block;
+                margin-bottom: 50px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- 使用 v-for 渲染图片 -->
+            <div>
+                <img v-for="(item, index) in content" :src="defaultUrl" :key="index" v-lazy-load="item.src" />
+            </div>
+        </div>
+
+        <script src="https://static.nowcoder.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                directives: {
+                    'lazy-load': {
+                        inserted(el, binding) {
+                            el.src = this.defaultUrl
+                            const observer = new IntersectionObserver(
+                                ([entry]) => {
+                                    if (entry.isIntersecting) {
+                                        el.src = binding.value
+                                        observer.unobserve(el)
+                                    }
+                                },
+                                { threshold: 0.1 }
+                            )
+                            observer.observe(el)
+                        },
+                    },
+                },
+                data() {
+                    return {
+                        content: [
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img1.jpg', num: '45002' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img2.jpg', num: '368724' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img3.jpg', num: '96487' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img4.jpg', num: '96487' },
+                            { src: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img5.jpg', num: '96487' },
+                            // Add other image data
+                        ],
+                        defaultUrl: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/loading.jpg',
+                        imgs:[]
+                    }
+                },
+                mounted() {},
+                beforeDestroy() {},
+                methods: {
+                    throttle(fn, delay = 1000) {
+                        let timer = null
+                        return function (...args) {
+                            if (timer) {
+                                return
+                            }
+                            timer = setTimeout(() => {
+                                fn.apply(this, args)
+                                timer = null
+                            }, delay)
+                        }
+                    },
+
+
+
+                },
+                computed: {
+                    
+                },
+            })
+        </script>
+    </body>
+</html>

@@ -165,24 +165,35 @@ function AddOne1<T extends number>(a: T, b: T): number {
 
 // 泛型
 // 函数声明
-let getArray: <T>(arg: T, times: number) => T[]
-declare function getArray1<T>(arg: T): T
-//
-//泛型和 interface
-interface KeyPair<T, U> {
-    key: T
-    value: U
-}
+// let getArray: <T>(arg: T, times: number) => T[]
+// declare function getArray1<T>(arg: T): T
+// //
+// //泛型和 interface
+// interface KeyPair<T, U> {
+//     key: T
+//     value: U
+// }
 
-// 泛型约束 extends
-interface KeyPair1<T extends string | number> {
-    name: T
-}
+// // 泛型约束 extends
+// interface KeyPair1<T extends string | number> {
+//     name: T
+// }
 
-// 枚举
-enum State {
-    Ready,
-    Waiting,
-}
+// // 枚举
+// enum State {
+//     Ready,
+//     Waiting,
+// }
+
+// interface A1 {
+//     a: string
+// }
+// interface A1 {
+//     b: string
+// }
+// const c12: A1 = {
+//     a: 'a',
+//     b: 'b',
+// }
 
 

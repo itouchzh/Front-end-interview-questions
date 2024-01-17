@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const minHeapSort = (arr) => {
+                // 1. 建立小顶堆
+                buildMinHeap(arr)
+                for (let i = arr.length - 1; i > 0; i--) {
+                    // 2. 将堆顶元素与堆尾元素交换
+                    ;[arr[0], arr[i]] = [arr[i], arr[0]]
+                    siftDown(arr, 0, i - 1)
+                }
+            }
+
+            const buildMinHeap = (arr) => {
+                if (arr.length < 2) {
+                    return arr
+                }
+
+                const startIndex = Math.floor(arr.length / 2 - 1)
+                for (let i = startIndex; i >= 0; i--) {
+                    siftDown(arr, i, arr.length - 1)
+                }
+            }
+
+            // 堆排序,从startIndex开始，向下调整小顶堆
+            const siftDown = (arr, startIndex, endIndex) => {
+                const leftChildIndex = 2 * startIndex + 1
+                const rightChildIndex = 2 * startIndex + 2
+
+                let swapIndex = startIndex
+                let tempNode = arr[startIndex]
+
+                if (leftChildIndex <= endIndex) {
+                    // 小顶堆，如果左孩子比根节点小的话就需要调整
+                    if (arr[leftChildIndex] < tempNode) {
+                        tempNode = arr[leftChildIndex]
+                        swapIndex = leftChildIndex
+                    }
+                }
+
+                if (rightChildIndex <= endIndex) {
+                    // 右节点小于左节点，就是说明右边节点是最小的
+                    if (arr[rightChildIndex] < tempNode) {
+                        tempNode = arr[rightChildIndex]
+                        swapIndex = rightChildIndex
+                    }
+                }
+
+                if (swapIndex !== startIndex) {
+                    arr[swapIndex] = arr[startIndex]
+                    arr[startIndex] = tempNode
+                    // 递归，向下继续调整
+                    siftDown(arr, swapIndex, endIndex)
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -9,6 +9,7 @@
         "jsx": "preserve", //preserve模式,在preserve模式下生成代码中会保留JSX以供后续的转换操作使用
         // "sourceMap": true, //生成目标文件的sourceMap文件
         "resolveJsonModule": true, //允许导入扩展名为“.json”的模块
+        "experimentalDecorators": true, //允许使用装饰器
         "esModuleInterop": false, //允许module.exports=xxx 导出，由import from 导入.因为很多老的js库使用了commonjs的导出方式，并且没有导出default属性
         "lib": [
             //TS需要引用的库

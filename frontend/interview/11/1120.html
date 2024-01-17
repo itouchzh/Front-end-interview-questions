@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            span {
+                height: 200px;
+                width: 200px;
+                background-color: rebeccapurple;
+            }
+        </style>
+    </head>
+    <body>
+        <span> asdf </span>
+        <script>
+            function Father(name) {
+                this.name = name
+            }
+            Father.prototype.age = 23
+
+            // 手写发布订阅模式
+            class EventBus {
+                constructor() {
+                    this.events = {}
+                }
+
+                on(name, callback) {
+                    if (!this.events[name]) {
+                        this.events[name] = []
+                    }
+                    this.events[name].push(callback)
+                }
+                emit(name, data) {
+                    this.events[name].forEach((item) => item(data))
+                }
+                off(name, callback) {
+                    this.events[name].filter((item) => item !== callback)
+                }
+            }
+
+            // accept,catch-control,
+            // 手写promise all
+            function myPromiseAll(iterators) {
+                const arr = Array.from(iterators)
+                const result = []
+                let index = 0
+                return new Promise((resolve, reject) => {
+                    for (let i = 0; i < arr.length; i++) {
+                        Promise.resolve(arr[i])
+                            .then((res) => {
+                                result[i] = res
+                                index++
+                                if (index === arr.length) {
+                                    resolve(result)
+                                }
+                            })
+                            .catch((err) => {
+                                reject(err)
+                            })
+                    }
+                })
+            }
+
+            // 写原生ajax
+            // const xhr = new XMLHttpRequest()
+            // xhr.open('get', 'url', true)
+            // xhr.setRequestHeader('Content-Type', 'application/json')
+            // xhr.onreadystatechange = function () {
+            //     if (xhr.readyState === 4) {
+            //         if (xhr.status === 200) {
+            //             console.log(xhr.responseText)
+            //         } else {
+            //             console.log('error')
+            //         }
+            //     }
+            // }
+            // xhr.onerror = function () {
+            //     console.log('error')
+            // }
+            // xhr.send()
+            function makeAjaxRequest() {
+                return new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest()
+                    xhr.open('get', url, true)
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                resolve(xhr.responseText)
+                            } else {
+                                reject(xhr.status)
+                            }
+                        }
+                    }
+                    xhr.onerror = function () {
+                        reject(xhr.status)
+                    }
+                    xhr.send()
+                })
+            }
+            // 防抖和节流
+            function debounce(fn, delay) {
+                let timer = null
+                return function () {
+                    if (timer) {
+                        clearTimeout(timer)
+                    }
+                    timer = setTimeout(() => {
+                        fn.call(this)
+                    }, delay)
+                }
+            }
+
+            function throttle(fn, delay) {
+                let timer = false
+                return function () {
+                    if (!timer) {
+                        fn.call(this)
+                        timer = true
+                        setTimeout(() => {
+                            timer = false
+                        }, delay)
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

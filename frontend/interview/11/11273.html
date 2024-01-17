@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset=utf-8>
+  <style type="text/css">
+    .food {
+      border: 1px dashed #FFC0CB;
+      margin: 10px 0;
+      width: 100px;
+    }
+
+    .plate {
+      border: 1px solid #2AA549;
+      width: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="magnifier"></section>
+  <script >
+
+    var magnifier = {
+            init(param) {
+                const el = param.el
+                if (!el) return
+                this.createElement(el,food)
+                this.initEvent()
+            },
+            createElement(el, food) {
+              const foodUl = document.createElement('ul');
+              for (let foodName of food) {
+                const foodLi = document.createElement('li');
+                foodLi.className = 'food';
+                foodLi.draggable = true;
+                foodLi.innerHTML = foodName;
+                foodUl.appendChild(foodLi);
+              }
+              el.appendChild(foodUl)
+              const plateDiv = document.createElement('div');
+              plateDiv.className = 'plate';
+              plateDiv.innerText = "小明的餐盘";
+              el.appendChild(plateDiv);
+            },
+            initEvent() {
+                const foodNodes = document.querySelectorAll('.food')
+                const plate = document.querySelector('.plate')
+                let dragNode = null
+                let cloneDom = {};
+                
+                // TODO: 当开始拖动食物时触发，原食物不消失
+                foodNodes.forEach((foodNode) => {
+                    foodNode.addEventListener('dragstart', (event) => {
+                        dragNode = foodNode
+                    })
+                });
+                // TODO: 食物拖动过程中的处理
+               
+                // TODO: 鼠标左键释放后，食物落入餐盘中
+                
+            }
+        }
+        magnifier.init({
+            // TODO: 请获取id=magnifier的节点
+            el: null,
+			food: ['猪排', '牛排', '拍黄瓜', '小青菜']
+        })
+    </script>
+ 
+</body>
+
+</html>
+根据列表数据封装一个图片懒加载的组件并引入使用
+1.进入页面在浏览器可视区范围内的图片会进行懒加载。
+2.向下滑动，当下面的图片进入窗口可视区范围内，开始加载。
+3.增加节流，节流时间为1s,防止滑动时频繁触发事件。
+4.当所有图片加载完毕时，移除滚动监听事件
+<html>
+
+<head>
+	<!-- IverilogDemo -->
+	<title> Hello </title>
+	<script src="https://static.nowcoder.com/ajax/libs/vue/2.6.9/vue.min.js"></script>
+</head>
+<style>
+	/* 在此处补充代码 */
+    .box{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding:50px;
+    }
+    img{
+        height:400px;
+        width: 20%;
+    }
+</style>
+
+<body>
+	<div id="example">
+		<div class="box">
+			<!-- 在此处补充代码 -->
+            <!-- 懒加载 -->
+            <img v-for="item in content"  v-lazy="item.src" :src="item.src" alt="lazy" :key="item.num" ref="lazy">
+            <div v-else>
+                Loading...
+            </div>
+	</div>
+	<script>
+		// 在此处补充代码
+		var vm = new Vue({
+			el: '#example',
+			data() {
+				return {
+					content:[{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img1.jpg',num:'45002'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img2.jpg',num:'368724'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img3.jpg',num:'96487'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img4.jpg',num:'86944'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img5.jpg',num:'43761'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img6.jpg',num:'64937'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img7.jpg',num:'34978'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img8.jpg',num:'64913'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img9.jpg',num:'42567'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img10.jpg',num:'4697'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img11.jpg',num:'64874'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img12.jpg',num:'36972'},
+					{src:'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/img13.jpg',num:'67355'},],
+					defaultUrl: 'https://static.nowcoder.com/ajax/img/vue-Lazyloading/img/loading.jpg',
+                    throttleTimer: null
+				}
+			},
+			created() {
+			},
+            mounted(){
+                this.addScrollListener()
+            },
+            beforeDestroy(){
+                this.removeScrollListener()
+            },
+			methods: {
+                lazyLoadImages(){
+                    this.content.forEach((item , index) => {
+                        if(this.isElementInViewport(index)){
+                            this.$set(this.content, index, {...item, src: item.src})
+                        }
+                    })
+                },
+                isElementInViewport(index){
+                    const rect = this.$refs.lazy[index].getBoundingClientRect();
+                    return (
+                        rect.top >= 0 &&
+                        rect.left >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                    );
+                },
+                addScrollListener(){
+                    window.addEventListener('scroll', this.throttle(this.lazyLoadImages, 1000))
+                },
+                resoveScrollListener(){
+                    window.removeEventListener('scroll', this.throttle(this.lazyLoadImages, 1000))
+                },
+                throttle(fn,delay){
+                    return function(){
+                        if(!this.throttleTimer){
+                            this.throttleTimer = setTimeout(() => {
+                                fn.apply(this, arguments)
+                                this.throttleTimer = null
+                            }, delay)
+                        }
+                    }
+                }
+				
+			}
+		})
+	</script>
+</body>
+
+</html>
