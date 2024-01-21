@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Camera Streaming</title>
+    </head>
+    <body>
+        <video id="camera" width="640" height="480" autoplay></video>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const videoElement = document.getElementById('camera')
+                const socket = new WebSocket('ws://localhost:5000') // 替换为你的后端 WebSocket 地址
+
+                navigator.mediaDevices
+                    .getUserMedia({ video: true })
+                    .then((stream) => {
+                        videoElement.srcObject = stream
+
+                        const mediaRecorder = new MediaRecorder(stream)
+                        mediaRecorder.ondataavailable = (event) => {
+                            if (event.data.size > 0) {
+                                socket.send(event.data)
+                            }
+                        }
+
+                        mediaRecorder.start()
+                    })
+                    .catch((error) => {
+                        console.error('Error accessing camera:', error)
+                    })
+
+                socket.addEventListener('open', (event) => {
+                    console.log('WebSocket connection opened')
+                })
+
+                socket.addEventListener('message', (event) => {
+                    console.log('Received message:', event.data)
+                    // 在此处处理后端返回的数据
+                })
+
+                socket.addEventListener('close', (event) => {
+                    console.log('WebSocket connection closed')
+                })
+            })
+        </script>
+    </body>
+</html>
