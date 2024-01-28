@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-let count = ref(0)
+import Student from './components/Student.vue';
 </script>
 
 <template>
   <div>
-    <h1>{{ count }}</h1>
+    <Student />
   </div>
 </template>
 

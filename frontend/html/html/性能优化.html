@@ -4,24 +4,31 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <script>
+            const entryHandler = (list) => {
+                for (const entry of list.getEntries()) {
+                    console.log(entry)
+                    // if (entry.name === 'first-paint') {
+                    //     observer.disconnect()
+                    // }
+                }
+            }
+            const observer = new PerformanceObserver(entryHandler)
+            observer.observe({ entryTypes: ['paint', 'resource', 'mark'] })
+            performance.mark('owner')
+        </script>
+        <script>
+            function handleClick() {
+                performance.mark('start')
+                const div = document.createElement('div')
+                div.innerText = '11'
+                document.body.append(div)
+                performance.mark('end')
+            }
+        </script>
     </head>
     <body>
         <div>11</div>
-        <script>
-            const entryHandler = (list) => {
-                console.log(list.getEntries())
-                for (const entry of list.getEntries()) {
-                    console.log(entry)
-                    if (entry.name === 'first-paint') {
-                        observer.disconnect()
-                    }
-                    console.log(entry)
-                }
-            }
-
-            const observer = new PerformanceObserver(entryHandler)
-            // buffered 属性表示是否观察缓存数据，也就是说观察代码添加时机比事情触发时机晚也没关系。
-            observer.observe({ type: 'paint', buffered: true })
-        </script>
+        <button onclick="handleClick()">add one</button>
     </body>
 </html>
