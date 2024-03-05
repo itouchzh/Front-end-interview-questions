@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 拍平数组
+            function myFlat(arr) {
+                let res = []
+                for (let i = 0; i < arr.length; i++) {
+                    if (Array.isArray(arr[i])) {
+                        res = res.concat(myFlat(arr[i]))
+                    } else {
+                        res.push(arr[i])
+                    }
+                }
+                return res
+            }
+            const result = myFlat([1, [2, 3, [2, 3, 4, 4]], 4])
+            console.log(result)
+
+            // var flat = function (arr, n) {
+            //     const res = []
+            //     for (let i = 0; i < arr.length; i++) {
+            //         if (typeof arr[i] === 'object' && n > 0) {
+            //             res.push(...flat(arr[i], n - 1))
+            //         } else {
+            //             res.push(arr[i])
+            //         }
+            //     }
+            //     return res
+            // }
+
+            const objArr = [
+                {
+                    name: 'paul',
+                    age: 23,
+                },
+                {
+                    name: 'jo',
+                    age: 29,
+                },
+            ]
+            objArr.sort((a, b) => b.age - a.age)
+            console.log(objArr)
+        </script>
+    </body>
+</html>

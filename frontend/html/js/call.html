@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            Function.prototype.myCall = function (obj, ...args) {
+                const key = Symbol('key')
+                obj[key] = this
+                const res = obj[key](...args)
+                delete obj[key]
+                return res
+            }
+
+            Function.prototype.myApply = function (obj, args) {
+                const key = Symbol('key')
+                obj[key] = this
+                const res = obj[key](...args)
+                delete obj[key]
+                return res
+            }
+
+            Function.prototype.myBind = function (obj, ...args) {
+                return (...reArgs) => this.myCall(obj, ...args, ...reArgs)
+            }
+
+            class Test {
+                #username = 'paul'
+
+                getName() {
+                    console.log(this.#username)
+                }
+            }
+
+            new Test().getName()
+
+            function getName() {}
+            console.log(getName.name)
+        </script>
+    </body>
+</html>

@@ -91,7 +91,7 @@
             //     Parent.call(this, name)
             // }
             // const child = new Child("paul")
-            // child.sayHello() 
+            // child.sayHello()
 
             // // 3. 组合继承
             // function Parent(name) {
@@ -146,23 +146,27 @@
             // const child = createObj(obj)
             // child.sayHello()
             // child.sayName()
-            
 
-            // 6. 寄生组合式继承
-           
-            function Father(name){
+            // 6. 寄生组合式继承,所谓寄生组合式继承，即通过借用构造函数来继承属性，通过原型链的混成形式来继承方法。
+
+            function Father(name) {
                 this.name = name
-                console.log(name);
+                console.log(name)
             }
-            Father.prototype.sayHello = function(){
+            Father.prototype.sayHello = function () {
                 console.log('This is sayHello()')
             }
 
-            function Child(name){
-                Father.call(this,name)
+            function Child(name) {
+                // 继承属性，使用构造函数
+                Father.call(this, name)
             }
-
-            Child.prototype = Object.create(Father.prototype)
+            /* 使用原型链继承方法 */
+            Child.prototype = Object.create(Father.prototype, {
+                constructor: {
+                    value: Child,
+                },
+            })
             const child = new Child('paul')
             child.sayHello()
         </script>

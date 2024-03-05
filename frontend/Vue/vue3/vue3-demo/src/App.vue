@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import Student from './components/Student.vue';
+// import Student from './components/Student.vue';
+import Father from './view/communication/Father.vue'
 </script>
 
 <template>
   <div>
-    <Student />
+    <!-- <Student /> -->
+    <Father />
   </div>
 </template>
 

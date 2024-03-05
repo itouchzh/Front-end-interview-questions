@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .bg {
+                height: 600px;
+                width: 625px;
+                filter: blur(2px);
+                transform-style: preserve-3d;
+                perspective: 1000px;
+                transform: rotate3d(24, -83, 45, 57deg);
+            }
+
+            .bg:hover {
+                filter: blur(0);
+            }
+
+            .img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                transform-style: preserve-3d;
+
+                transition: transform 0.5s; /* 添加过渡效果 */
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <div class="bg">
+                <img class="img" src="../images/bg.png" alt="背景图片" />
+            </div>
+        </div>
+        <script>
+            const multiple = 18
+            const mouseOverContainer = document.querySelector('.bg')
+            const element = document.querySelector('.img')
+
+            function transformElement(x, y) {
+                const box = element.getBoundingClientRect()
+                const calcX = -(y - box.y - box.height / 2) / multiple
+                const calcY = (x - box.x - box.width / 2) / multiple
+
+                // 使用模板字符串简化拼接
+                element.style.transform = `rotateX(${calcX}deg) rotateY(${calcY}deg)`
+            }
+
+            mouseOverContainer.addEventListener('mousemove', (e) => {
+                window.requestAnimationFrame(() => {
+                    transformElement(e.clientX, e.clientY)
+                })
+            })
+
+            mouseOverContainer.addEventListener('mouseleave', () => {
+                window.requestAnimationFrame(() => {
+                    element.style.transform = 'rotateX(0) rotateY(0)'
+                })
+            })
+
+
+
+            const promise = new Promise((resolve, reject) => {
+                console.log(11)
+                resolve(20)
+                console.log(22)
+            })
+            promise.then(res => {
+                console.log(res)
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            canvas {
+                background-color: antiquewhite;
+                display: block;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script>
+            const canvas = document.createElement('canvas')
+            canvas.width = 800
+            canvas.height = 800
+            document.body.append(canvas)
+            const context = canvas.getContext('2d')
+            for (let i = 1; i < 16; i++) {
+                context.moveTo(50, i * 50)
+                context.lineTo(750, 50 * i)
+                context.stroke()
+
+                context.moveTo(i * 50, 50)
+                context.lineTo(50 * i, 750)
+                context.stroke()
+            }
+            let circles = []
+            for (let i = 1; i < 16; i++) {
+                circles[i] = []
+            }
+            let isBlack = true
+            let endGame = false
+            canvas.addEventListener('click', (e) => {
+                if (endGame) return
+                let { offsetX, offsetY } = e
+                if (offsetX < 25 || offsetX > 775 || offsetY < 25 || offsetY > 775) {
+                    console.log('画出界面了')
+                }
+
+                let i = Math.floor((offsetX + 25) / 50)
+                let j = Math.floor((offsetY + 25) / 50)
+                let x = Math.floor((offsetX + 25) / 50) * 50
+                let y = Math.floor((offsetY + 25) / 50) * 50
+                if (circles[i][j]) {
+                    console.log('已经有棋子了')
+                    return
+                }
+                circles[i][j] = isBlack ? 'black' : 'white'
+
+                // context.fillStyle = isBlack ? 'black' : 'white'
+
+                let tx = isBlack ? x - 10 : x + 10
+                let ty = isBlack ? y - 10 : y + 10
+                let g = context.createRadialGradient(tx, ty, 0, tx, ty, 30)
+                g.addColorStop(0, isBlack ? '#ccc' : '#666')
+                g.addColorStop(1, isBlack ? '#000' : '#fff')
+                context.fillStyle = g
+                context.beginPath()
+                context.arc(x, y, 20, 0, 2 * Math.PI)
+
+                context.fill()
+                context.closePath()
+
+                endGame = checkVertival(i, j)
+                if (endGame) {
+                    return
+                }
+                isBlack = !isBlack
+            })
+
+            function checkVertival(row, col) {
+                let times = 0
+                let up = 0
+                let down = 0
+                let count = 0
+                while (times++ < 10000) {
+                    let target = isBlack ? 'black' : 'white'
+                    up++
+                    if (circles[row][col - up] && circles[row][col - up] == target) {
+                        count++
+                    }
+                    down++
+                    if (circles[row][col + down] && circles[row][col + down] == target) {
+                        count++
+                    }
+
+                    if (count >= 5 || (circles[row][col - up] !== target && circles[row][col + down] !== target)) {
+                        break
+                    }
+                }
+                return count >= 5
+            }
+        </script>
+    </body>
+</html>
