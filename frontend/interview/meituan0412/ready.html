@@ -148,7 +148,6 @@
                     eventNameList.forEach((fn) => fn())
                 }
             }
-            // call 不明白
             function myCall(context, ...args) {
                 context = context || window
                 context.fn = this
@@ -156,7 +155,6 @@
                 delete context.fn
                 return res
             }
-            // bind 不明白
             function myBind(context, ...args) {
                 if (typeof this !== 'function') {
                     throw '请使用函数调用'

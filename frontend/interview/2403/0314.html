@@ -7,14 +7,12 @@
     </head>
     <body>
         <script>
-            const p = new Promise((resolve) => {
-                resolve(100)
-                console.log(200)
-            })
-            p.then((res) => {
-                console.log(res)
-            })
-            console.log(300)
+            const a = 1
+            console.log(a.__proto__ === Number.prototype)
+            console.log(Number.__proto__ === Function.prototype)
+            console.log(Number.prototype.__proto__ === Object.prototype)
+
+            
         </script>
     </body>
 </html>

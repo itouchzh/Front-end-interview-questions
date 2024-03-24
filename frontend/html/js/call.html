@@ -39,6 +39,33 @@
 
             function getName() {}
             console.log(getName.name)
+
+            function myCall1(context, ...args) {
+                context = context || window
+                args = args ? args : []
+
+                context.fn = this
+                const res = context.fn(...args)
+
+                delete context.fn
+                return res
+            }
+
+            function myApply(context, ...args) {
+                context = context || window
+                args = args ? args : []
+                context.fn = this
+                const res = context.fn(args)
+                delete context.fn
+                return res
+            }
+
+            function myNew(Fn, ...args) {
+                const newObj = {}
+                newObj.__proto__ = Fn.prototype
+                let res = Fn.apply(newObj, args)
+                return res instanceof Object ? res : newObj
+            }
         </script>
     </body>
 </html>

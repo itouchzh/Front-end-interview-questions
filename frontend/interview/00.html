@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            //         小红拿到了一棵二叉树。她希望删除尽可能少的节点，使得该二叉树变成一棵满二叉树。你能编写一个函数返回需要删除的节点最小数量吗？
+            // 一个二叉树，如果每一个层的节点数都达到最大值，则这个二叉树就是满二叉树。
+            /*
+             * function TreeNode(x) {
+             *   this.val = x;
+             *   this.left = null;
+             *   this.right = null;
+             * }
+             */
+            /**
+             * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+             *
+             *
+             * @param root TreeNode类
+             * @return int整型
+             */
+            function numOfNode(root) {
+                // write code here
+               
+            }
+           
+            // script start; async1 start;async2;promise1;end;async1 end;promise2;setTimeout
+            async function async1() {
+                console.log('async1 start')
+                await async2()
+                console.log('async1 end')
+            }
+
+            async function async2() {
+                console.log('async2')
+            }
+            console.log('script start')
+            setTimeout(() => {
+                console.log('setTimeout')
+            }, 0)
+            // 调用 async1
+            async1()
+
+            new Promise((resolve) => {
+                console.log('promise1')
+                resolve()
+            }).then(() => {
+                console.log('promise2')
+            })
+            console.log('end')
+        </script>
+    </body>
+</html>

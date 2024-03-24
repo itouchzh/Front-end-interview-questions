@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .clearfix::after {
+                content: '';
+                display: block;
+                clear: both;
+            }
+            .son1,
+            .son2 {
+                width: 200px;
+                height: 200px;
+                margin-right: 20px;
+                background-color: antiquewhite;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box clearfix">
+            <div class="son1">1</div>
+            <div class="son2">2</div>
+        </div>
+        <div>Hello</div>
+    </body>
+</html>

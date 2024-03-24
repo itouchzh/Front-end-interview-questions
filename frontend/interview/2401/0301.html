@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <p>123</p>
+        <script>
+            let frames = []
+            let frame = 0
+            let lastSecond = Date.now()
+            function calculateFPS() {
+                frame++
+                const now = Date.now()
+                if (lastSecond + 1000 <= now) {
+                    console.log(frame)
+                    // 由于 now - lastSecond 的单位是毫秒，所以 frame 要 * 1000
+                    const fps = Math.round((frame * 1000) / (now - lastSecond))
+                    console.log(fps)
+                    frames.push(fps)
+                    frame = 0
+                    lastSecond = now
+                }
+
+                // 避免上报太快，缓存一定数量再上报
+                if (frames.length >= 10) {
+                    console.log({
+                        frames,
+                        type: 'performace',
+                        subType: 'fps',
+                    })
+                    frames.length = 0
+                }
+
+                requestAnimationFrame(calculateFPS)
+            }
+
+            // calculateFPS()
+        </script>
+    </body>
+</html>

@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>三栏布局</title>
-    <link rel="stylesheet" href="../styles/global.css">
-    <style>
-        header{
-            background-color: dodgerblue;
-        }
-        .flex-box{
-            display: flex;
-        }
-        .flex-center{
-            background-color: gold;
-            flex-grow: 1;
-        }
-        .flex-left{
-            background-color: rebeccapurple;
-            order: -1;
-            flex: 0 0 100px;
-        }
-        .flex-right{
-            background-color: sandybrown;
-            flex: 0 0 100px
-        }
-        footer{
-            background-color: floralwhite;
-        }
-    </style>
-</head>
-<body>
-    <header>Header</header>
-    <div class="flex-box">
-        <div class="flex-center">center</div>
-        <div class="flex-left">left</div>
-        <div class="flex-right">right</div>
-    </div>
-    <footer>footer</footer>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>三栏布局</title>
+        <link rel="stylesheet" href="../styles/global.css" />
+        <style>
+            .flex-box {
+                height: 100%;
+                display: flex;
+            }
+            .flex-center {
+                background-color: gold;
+                flex-grow: 1;
+            }
+            .flex-left {
+                background-color: rebeccapurple;
+                order: -1;
+                flex: 0 0 100px;
+            }
+            .flex-right {
+                background-color: sandybrown;
+                flex: 0 0 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="flex-box">
+            <div class="flex-center">center</div>
+            <div class="flex-left">left</div>
+            <div class="flex-right">right</div>
+        </div>
+    </body>
 </html>

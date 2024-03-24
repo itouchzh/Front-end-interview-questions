@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function JSONStringfy(value) {
+                if (typeof value === 'string') {
+                    return `"${value}"`
+                } else if (typeof value === 'number' || typeof value === 'boolean') {
+                    return value
+                } else if (Array.isArray(value)) {
+                    return `[${value.map(JSONStringfy).join(',')}]`
+                } else if (value instanceof Object) {
+                    const keys = Object.keys(value)
+                    return `{${keys.map((key) => `${JSONStringfy(key)}:${JSONStringfy(value[key])}`).join(',')}}`
+                }
+            }
+            const data = {
+                name: 'paul',
+                age: 23,
+                count: [1, 2, 3, 4, '5'],
+                address: {
+                    name: '北京',
+                    isFinite: true,
+                },
+            }
+            console.log(JSONStringfy(data))
+            console.log(JSON.stringify(data))
+            console.log(JSONStringfy(data) === JSON.stringify(data))
+        </script>
+    </body>
+</html>

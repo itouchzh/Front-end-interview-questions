@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 在JavaScript中，工厂模式的表现形式就是一个调用即可返回新对象的函数
+            // 单例模式：在使用这个模式时，单例对象整个系统需要保证只有一个存在。
+            class SingleTon {
+                static #instance
+                static getInstance() {
+                    if (this.#instance === undefined) {
+                        this.#instance = new SingleTon()
+                    }
+                    return this.#instance
+                }
+            }
+            // 在对象之间定义一个一对多的依赖，当一个对象状态改变的时候，所有依赖的对象都会自动收到通知
+
+            // 发布订阅
+            class pubsub {
+                constructor() {
+                    this.list = {}
+                }
+
+                on(name, callback) {
+                    const callbackList = this.list[name] || []
+                    callbackList.push(callback)
+                    this.list[name] = callbackList
+                }
+
+                emit(name, ...args) {
+                    let eventName = this.list[name]
+                    if (eventName) {
+                        eventName.forEach((fn) => {
+                            fn.apply(this, args)
+                        })
+                    } else {
+                        console.log('该事件未被监听')
+                    }
+                }
+                once(name, fn) {
+                    let decor = (...args) => {
+                        fn.apply(this, args)
+                        this.off(name, decor)
+                    }
+                }
+
+                off(name, fn) {
+                    let eventName = this.list[name]
+                    if (eventName && fn) {
+                        let index = eventName.findIndex((fns) => fns === fn)
+                        // 根据索引删除事件
+                        eventName.splice(index, 1)
+                    } else {
+                        console.log('该事件未被监听')
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

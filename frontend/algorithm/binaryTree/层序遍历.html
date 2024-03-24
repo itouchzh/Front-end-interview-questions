@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function traverse(elRoot) {
+                if (!elRoot) return
+                let ans = []
+                let cur = [elRoot]
+                while (cur.length) {
+                    let next = []
+                    let vals = []
+                    cur.forEach((node) => {
+                        vals.push(node.tagName)
+                        if (node.children) {
+                            for (let i = 0; i < node.children.length; i++) {
+                                next.push(node.children[i])
+                            }
+                        }
+                    })
+                    cur = next
+                    ans.push(vals)
+                }
+                return ans
+            }
+            const res = traverse(document.getElementById('root'))
+            console.log(res)
+        </script>
+    </body>
+</html>

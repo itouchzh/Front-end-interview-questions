@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function myFlat(arr) {
+                let res = []
+                for (let i = 0; i < arr.length; i++) {
+                    if (Array.isArray(arr[i])) {
+                        res.push(...myFlat(arr[i]))
+                    } else {
+                        res.push(arr[i])
+                    }
+                }
+                return res
+            }
+            let test = [[1, 2], [1, 2, 3, [2, 3, [1, 1, 5]]], 3, 0]
+            console.log(myFlat(test))
+
+            function myFlatLayer(arr, n) {
+                if (n <= 0) return arr
+                let res = []
+                for (let i = 0; i < arr.length; i++) {
+                    if (Array.isArray(arr[i])) {
+                        res = res.concat(myFlatLayer(arr[i], n - 1))
+                    } else {
+                        res.push(arr[i])
+                    }
+                }
+                return res
+            }
+            console.log(myFlatLayer(test, 6))
+
+            console.log(Object.toString())
+
+            var combine = function (n, k) {
+                const arr = []
+                for (let i = 1; i <= n; i++) {
+                    arr.push(i)
+                }
+                let path = []
+                let res = []
+                let used = Array(arr.length).fill(false)
+                function backtracking(arr, used, path, startIndex) {
+                    if (path.length === k) {
+                        res.push([...path])
+                        return
+                    }
+                    for (let i = startIndex; i < arr.length; i++) {
+                        if (used[i]) continue
+                        used[i] = true
+                        path.push(arr[i])
+                        backtracking(arr, used, path, i + 1)
+                        used[i] = false
+                        path.pop()
+                    }
+                }
+                backtracking(arr, used, path, 0)
+                return res
+            }
+
+            console.log(combine(4, 2))
+
+            var isValid = function (s) {
+                let res = s.replaceAll(/[()[]{}]/g, '')
+                console.log(res)
+                return res
+            }
+            console.log(isValid('()[]{}'))
+            console.log('b'.charCodeAt() - 'a'.charCodeAt())
+            const obj = {}
+            for (let i = 0; i < 26; i++) {
+                obj[String.fromCharCode(i + 'a'.charCodeAt())] = i + 1
+            }
+            console.log(obj)
+
+            
+
+            
+        </script>
+    </body>
+</html>

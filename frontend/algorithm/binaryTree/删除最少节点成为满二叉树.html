@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            function TreeNode(x) {
+                this.val = x
+                this.left = null
+                this.right = null
+            }
+
+            /**
+             * 计算需要删除的节点最小数量，使得二叉树成为满二叉树
+             *
+             * @param root 二叉树的根节点
+             * @return 需要删除的节点最小数量
+             */
+            function minDeletionsToFullBinaryTree(root) {
+                function getFullStatus(node) {
+                    if (!node) return { height: 0, isFull: true, deletions: 0 }
+
+                    const left = getFullStatus(node.left)
+                    const right = getFullStatus(node.right)
+
+                    const fullHeight = Math.min(left.height, right.height) + 1
+                    const isFull = left.isFull && right.isFull && left.height === right.height
+                    let deletions = left.deletions + right.deletions
+
+                    if (!isFull) deletions += Math.abs(left.height - right.height)
+
+                    return { height: fullHeight, isFull, deletions }
+                }
+
+                const result = getFullStatus(root)
+                return result.deletions
+            }
+            // 创建示例二叉树
+            let root = new TreeNode(1)
+            root.left = new TreeNode(2)
+            root.right = new TreeNode(3)
+            root.left.left = new TreeNode(4)
+            root.left.right = new TreeNode(5)
+            root.right.left = new TreeNode(6)
+            // root.right.right = new TreeNode(7)
+
+            console.log(minDeletionsToFullBinaryTree(root))
+        </script>
+    </body>
+</html>

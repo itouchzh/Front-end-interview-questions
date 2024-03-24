@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            const myObject = {
+                data: [1, 2, 3, 4, 5],
+                [Symbol.iterator]() {
+                    let index = 0
+                    return {
+                        next: () => {
+                            if (index < this.data.length) {
+                                return { value: this.data[index++], done: false }
+                            } else {
+                                return { done: true }
+                            }
+                        },
+                    }
+                },
+            }
+
+            // 使用 for...of 循环遍历可迭代对象
+            for (const item of myObject) {
+                console.log(item)
+            }
+        </script>
+    </body>
+</html>
